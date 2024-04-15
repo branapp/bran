@@ -1,0 +1,87 @@
+/* designed by tysonlmao.dev */
+:root {
+    --default-background: #000;
+    --background-secondary: #3F2E3E;
+    --default-color: #FF90BC;
+    --default-button-color: #FFADCF;
+    --default-button-text-color: #000;
+    --default-accent: #FF90BC;
+    --base-padding: 1.5rem;
+    --base-radius: 10px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    padding: var(--base-padding);
+    background-color: var(--default-background);
+    color: var(--default-color);
+}
+
+main {
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 900px) {
+    main {
+        max-width: 900px;
+    }
+}
+
+h1, h2, h3, h4, h5, h6, p, span {
+    margin: 0;
+}
+
+/* utility classes */
+.h-100 {
+    min-height: 50vh;
+}
+
+.login-form {
+    max-width: 350px;
+}
+
+@media screen and (max-width: 900px) {
+    .login-form {
+        max-width: 350px;
+    }
+    
+}
+
+.login-form > * {
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+
+/* form elements */
+input {
+    border: 2px solid var(--default-accent);
+    border-radius: var(--base-radius);
+    background-color: unset;
+    padding: 0.3rem;
+    color: var(--default-color);
+}
+
+input[type='submit'] {
+    background-color: var(--default-button-color);
+    border: none;
+    color: var(--default-button-text-color);
+}
+
+button {
+    background-color: var(--default-button-color);
+    border: none;
+    color: var(--default-button-text-color);
+}
+
+.logo {
+    max-width: 15vw;
+}
+
+.bold-title {
+    font-size: 96px;
+    font-family: "Press Start", "Comic Sans MS", monospace;
+}
+
