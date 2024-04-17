@@ -1,7 +1,8 @@
 <?php
 session_start();
+include('../assets/templates/header.php');
 if (isset($_SESSION['cuid'])) :
-    header("Location: ../");
+    header("Location: ../dashboard");
     exit();
 endif;
 ?>
@@ -9,8 +10,7 @@ endif;
 <title>bran | login prompt</title>
 
 <body class="login-page">
-    <?php include('../assets/templates/header.php'); ?>
-    <div class="d-flex flex-column align-items-center justify-content-center">
+    <div class="d-flex flex-column align-items-center justify-content-center vh80">
         <div class="animate__animated animate__fadeIn">
             <div class="d-flex align-items-center justify-content-center">
                 <img src="../assets/img/bran.png" alt="bran" class="logo">
