@@ -1,5 +1,6 @@
 <?php
 session_start();
+include('../assets/templates/header.php');
 if (isset($_SESSION['cuid'])) :
     header("Location: ../dashboard");
     exit();
@@ -9,13 +10,14 @@ endif;
 <title>bran | login prompt</title>
 
 <body class="login-page">
-    <?php include('../assets/templates/header.php'); ?>
-    <div class="d-flex flex-column align-items-center justify-content-center">
+    <div class="d-flex flex-column align-items-center justify-content-center vh80">
         <div class="animate__animated animate__fadeIn">
             <div class="d-flex align-items-center justify-content-center">
                 <img src="../assets/img/bran.png" alt="bran" class="logo">
             </div>
         <form action="./inc/signup.inc.php" method="POST" class="login-form">
+            <h3 class="inline-form-title">user registration</h3>
+
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
                     <input type="text" name="username" id="username" class="form-control" value="<?php echo isset($_GET['username']) ? htmlspecialchars($_GET['username']) : ''; ?>">

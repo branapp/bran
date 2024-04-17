@@ -1,8 +1,12 @@
 <?php 
+session_start();
 include "../bran-config.php";
-
-if ($installed == false):
+if ($installed === false):
     header("Location: setup/installation.php");
 endif;
-header("Location: dashboard")
+
+if (!isset($_SESSION['cuid'])) :
+    header("Location: ../login");
+    exit();
+endif;
 ?>

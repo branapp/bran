@@ -3,11 +3,11 @@
  * requires bran config file.
  * CHECKS IF BRAN IS INSTALLED
  */
-include "../../../bran-config.php";
-if ($installed = true): 
-    header("../login");
-else: 
+include "../../bran-config.php";
+if ($installed === false): 
     header("../setup/installation.php");
+else: 
+    header("../login");
 endif;
 
 
@@ -41,7 +41,7 @@ body {
                 <h2 class="navbar-brand"><?php echo '\\\\bran\\'. basename($initial_file_dir) ?></h2>
                 </ul>
                 <div class="d-flex">
-                    <p>hi</p>
+                    <!-- <p>hi</p> -->
                 </div>
                 </div>
             </div>
