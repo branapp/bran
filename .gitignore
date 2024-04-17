@@ -1,3 +1,6 @@
 bran-config.php
+# node
+node_modules
+package-lock.json
 # osticket local
 ost/*
