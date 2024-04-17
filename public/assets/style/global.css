@@ -1,62 +1,56 @@
-/* designed by tysonlmao.dev */
+/* 
+* designed by tysonlmao.dev 
+* bran global styles
+*/
 :root {
     --default-background: #000;
-    --background-secondary: #3F2E3E;
     --default-color: #FF90BC;
+    --color-secondary: #8ACDD7;
     --default-button-color: #FFADCF;
     --default-button-text-color: #000;
     --default-accent: #FF90BC;
-    --base-padding: 1.5rem;
+    --base-padding: 2rem;
     --base-radius: 10px;
 }
 
 html {
+    height: 100%;  /* Ensure html takes full browser height */
     scroll-behavior: smooth;
 }
 
 body {
+    min-height: 100%;     /* Minimum height is full viewport height */
+    margin: 0 auto;            /* Remove default margin */
     padding: var(--base-padding);
     background-color: var(--default-background);
     color: var(--default-color);
+    /* ultrawide enjoyers */
+    max-width: 2160px;
 }
 
-main {
-    margin: 0 auto;
-}
-
-@media screen and (min-width: 900px) {
-    main {
-        max-width: 900px;
-    }
-}
 
 h1, h2, h3, h4, h5, h6, p, span {
     margin: 0;
 }
 
-/* utility classes */
-.h-100 {
-    min-height: 50vh;
+/* Specific styles for login page */
+.login-page .login-form {
+    width: 350px;
+    margin: 0 auto;
+    margin-top: 50px;
 }
 
-.login-form {
-    max-width: 350px;
+.login-form-outline {
+    border: 1px solid blue;
 }
 
-@media screen and (max-width: 900px) {
-    .login-form {
-        max-width: 350px;
-    }
-    
-}
-
-.login-form > * {
+.login-page .login-form > * {
     margin-bottom: 0.5rem;
     width: 100%;
 }
 
-/* form elements */
-input {
+/* Form elements styling */
+.login-page input {
     border: 2px solid var(--default-accent);
     border-radius: var(--base-radius);
     background-color: unset;
@@ -64,24 +58,29 @@ input {
     color: var(--default-color);
 }
 
-input[type='submit'] {
+.login-page input[type='submit'], .login-page button {
     background-color: var(--default-button-color);
     border: none;
     color: var(--default-button-text-color);
 }
 
-button {
-    background-color: var(--default-button-color);
-    border: none;
-    color: var(--default-button-text-color);
+.login-page .logo {
+    max-width: 250px; /* Logo size specifically for the login page */
 }
 
-.logo {
-    max-width: 15vw;
+/*
+* bootstrap overrides
+* yes i know theres probably a better way of doing this
+*/
+.navbar-brand {
+    color: var(--default-color);
+    font-family: "Press Start", system-ui !important;
+    font-size: 1.5rem;
 }
 
-.bold-title {
-    font-size: 96px;
-    font-family: "Press Start", "Comic Sans MS", monospace;
+.navbar-brand:hover {
+    color: var(--color-secondary);
+    text-shadow: var(--color-secondary) 1px 1px 5px;
+    transition: 0.3s ease;
+    cursor: default;
 }
-

@@ -1,19 +1,21 @@
 <?php
 session_start();
-if (isset($_SESSION['uid'])):
+if (isset($_SESSION['cuid'])) :
     header("Location: ../dashboard");
-    die();
+    exit();
 endif;
 ?>
 
-<?php include('../assets/templates/header.php'); ?>
-<title>bran | register account</title>
-</head>
+<title>bran | login prompt</title>
 
-<body>
-    <div class="d-flex align-items-center justify-content-center h-100">
-        <div class="login-form animate__animated animate__fadeIn">
-            <form action="../inc/register.inc.php" method="POST" class="login-form">
+<body class="login-page">
+    <?php include('../assets/templates/header.php'); ?>
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        <div class="animate__animated animate__fadeIn">
+            <div class="d-flex align-items-center justify-content-center">
+                <img src="../assets/img/bran.png" alt="bran" class="logo">
+            </div>
+        <form action="./inc/signup.inc.php" method="POST" class="login-form">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
                     <input type="text" name="username" id="username" class="form-control" value="<?php echo isset($_GET['username']) ? htmlspecialchars($_GET['username']) : ''; ?>">
@@ -39,3 +41,4 @@ endif;
             </form>
         </div>
     </div>
+</body>
