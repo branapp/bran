@@ -6,3 +6,4 @@ package-lock.json
 ost/*
 # bot
 bot/config.json
+bot/logs/*
