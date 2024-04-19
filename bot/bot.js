@@ -49,12 +49,10 @@ client.on(Events.InteractionCreate, async interaction => {
 	}
 });
 
-// When the client is ready, run this code (only once).
-// The distinction between `client: Client<boolean>` and `readyClient: Client<true>` is important for TypeScript developers.
-// It makes some properties non-nullable.
 client.once(Events.ClientReady, readyClient => {
 	logger.info(`Logged in as ${client.user.tag}!`);
 	client.user.setAvatar('../public/assets/img/bran.png');
+	client.user.setActivity('Brian')
 });
 
 // Log in to Discord with your client's token
