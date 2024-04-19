@@ -3,7 +3,8 @@
  * requires bran config file.
  * CHECKS IF BRAN IS INSTALLED
  */
-include "../../bran-config.php";
+include "../../../bran-config.php";
+
 if ($installed === false): 
     header("../setup/installation.php");
 else: 
