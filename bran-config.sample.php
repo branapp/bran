@@ -14,7 +14,7 @@ define('PDO_DBNAME', 'brandb');
 define('PDO_DBUSER', 'admin');
 
 /* bran sql database password */
-define('PDO_DBPASSWORD', 'admin');
+define('PDO_DBPASSWORD', 'hunter12');
 
 /**
  * determine whether bran is installed.
