@@ -7,11 +7,6 @@
  $base_dir = $_SERVER['DOCUMENT_ROOT'] . "/../";
  include "$base_dir/bran-config.php";
 
- if ($installed == true):
-     header("Location: ../login");
-     exit;
- endif;
-
 if ($installed === false): 
     header("$base_dir/public/setup/installation.php");
 else: 
