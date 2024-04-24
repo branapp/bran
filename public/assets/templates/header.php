@@ -27,7 +27,7 @@ $initial_file_dir = dirname($initial_file);
     <link rel="stylesheet" href="../assets/style/fonts.css">
 <style>
 body {
-    background-image: url('../<?php $inital_file_dir ?>assets/img/radial.jpg');
+    background-image: url('../<?php $inital_file_dir ?>assets/img/c_fog_darkbluepurupl.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
