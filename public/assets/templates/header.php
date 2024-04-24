@@ -27,10 +27,22 @@ $initial_file_dir = dirname($initial_file);
     <link rel="stylesheet" href="../assets/style/fonts.css">
 <style>
 body {
-    background-image: url('../<?php $inital_file_dir ?>assets/img/c_fog_darkbluepurupl.png');
+    <?php 
+    if($_SERVER['REQUEST_URI'] == '/setup/installation.php' || $_SERVER['REQUEST_URI'] == '/setup/installation.php/'):
+        ?>
+        background-image: url('../<?php $inital_file_dir ?>assets/img/radial2.jpg');
+        background-position: center;
+        <?php
+    else:
+        ?>
+        background-image: url('../<?php $inital_file_dir ?>assets/img/c_fog_darkbluepurupl.png');
+        background-position: center;
+        <?php
+    endif;        
+    ?>
     background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    background-repeat: no-repeat;   
+    background-attachment: fixed;
 }
 </style>
 </head>

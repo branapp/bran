@@ -33,6 +33,15 @@ h1, h2, h3, h4, h5, h6, p, span {
     margin: 0;
 }
 
+a {
+    color: var(--default-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 /* Specific styles for login page */
 .login-page .login-form {
     width: 350px;
@@ -78,11 +87,23 @@ h1, h2, h3, h4, h5, h6, p, span {
     font-size: 1.5rem;
 }
 
+
 .navbar-brand:hover {
     color: var(--color-secondary);
     text-shadow: var(--color-secondary) 1px 1px 5px;
     transition: 0.3s ease;
     cursor: default;
+}
+
+.text-header {
+    color: var(--default-color);
+    font-family: "Press Start", system-ui !important;
+    font-size: 3rem;
+}
+
+.info {
+    font-family: "Revx", system-ui !important;
+    font-size: 1.5rem;
 }
 
 .vh80 {
