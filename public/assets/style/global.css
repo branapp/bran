@@ -11,6 +11,7 @@
     --default-accent: #FF90BC;
     --base-padding: 2rem;
     --base-radius: 10px;
+    --alert-danger-color: #FF204E;
 }
 
 html {
@@ -77,6 +78,22 @@ a:hover {
     max-width: 250px; /* Logo size specifically for the login page */
 }
 
+
+.text-header {
+    color: var(--default-color);
+    font-family: "Press Start", system-ui !important;
+    font-size: 3rem;
+}
+
+.info {
+    font-family: "Revx", system-ui !important;
+    font-size: 1.5rem;
+}
+
+.vh80 {
+    min-height: 80vh;
+}
+
 /*
 * bootstrap overrides
 * yes i know theres probably a better way of doing this
@@ -95,17 +112,7 @@ a:hover {
     cursor: default;
 }
 
-.text-header {
-    color: var(--default-color);
-    font-family: "Press Start", system-ui !important;
-    font-size: 3rem;
-}
-
-.info {
-    font-family: "Revx", system-ui !important;
-    font-size: 1.5rem;
-}
-
-.vh80 {
-    min-height: 80vh;
+.alert-danger {
+    border: none;
+    background-color: var(--alert-danger-color);
 }

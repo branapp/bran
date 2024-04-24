@@ -25,4 +25,7 @@ $installed = false;
 
 /** enable or disable user registration */
 $user_registration_enabled = true;
+
+/** osticket installed? */
+$ost_installed = false;
 ?>
