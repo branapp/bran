@@ -1,6 +1,16 @@
 <?php 
 $config_location = $_SERVER['DOCUMENT_ROOT'] . "/../bran-config.php";
-include "$config_location";
+if (file_exists($config_location)):
+    if (filesize($config_location) > 0):
+        include "$config_location";
+    else:
+        header("Location: setup/installation.php");
+        exit;
+    endif;
+else:
+    header("Location: setup/installation.php");
+    exit;
+endif;
 // ensure if no config file, go to setup
 session_start();
 if ($installed === false):
