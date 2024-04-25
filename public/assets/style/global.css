@@ -39,10 +39,6 @@ a {
     text-decoration: none;
 }
 
-a:hover {
-    text-decoration: underline;
-}
-
 /* Specific styles for login page */
 .login-page .login-form {
     width: 350px;
@@ -94,6 +90,11 @@ a:hover {
     min-height: 80vh;
 }
 
+/* ui elements */
+.window {
+    border: 3px solid var(--color-secondary);
+}
+
 /*
 * bootstrap overrides
 * yes i know theres probably a better way of doing this
@@ -110,6 +111,12 @@ a:hover {
     text-shadow: var(--color-secondary) 1px 1px 5px;
     transition: 0.3s ease;
     cursor: default;
+}
+
+.nav-link {
+    font-family: "Press Start", system-ui !important;
+    color: var(--color-secondary);
+    font-size: 1.25rem;
 }
 
 .alert-danger {

@@ -101,10 +101,10 @@ if (isset($_POST['setup-submit'])) {
         function bran_setup($post_vars) {
             try {
                 $pdo = new PDO('mysql:host=localhost;dbname=' . $post_vars['dbname'], $post_vars['dbuser'], $post_vars['dbpass']);
-
+        
                 // Set the error mode to PDO::ERRMODE_EXCEPTION
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+        
                 // Create the users table
                 $query = "CREATE TABLE IF NOT EXISTS users (
                     id INT(11) NOT NULL AUTO_INCREMENT,
@@ -115,9 +115,26 @@ if (isset($_POST['setup-submit'])) {
                     role TINYTEXT,
                     PRIMARY KEY (id)
                 );";
-
+        
                 $pdo->exec($query);
-
+        
+                // Create the user_data table
+                $query = "CREATE TABLE IF NOT EXISTS user_data (
+                    id INT(11) NOT NULL AUTO_INCREMENT,
+                    user_id INT(11) NOT NULL,
+                    discord_id INT(11) DEFAULT NULL,
+                    nickname VARCHAR(32),
+                    pfp_path VARCHAR(255) DEFAULT NULL,
+                    bran_total INT(11),
+                    bran_daily INT(11),
+                    theme ENUM('light', 'dark', 'system') DEFAULT 'system',
+                    theme_accent VARCHAR(7),
+                    PRIMARY KEY (id),
+                    FOREIGN KEY (user_id) REFERENCES users(id)
+                );";
+        
+                $pdo->exec($query);
+        
                 // Insert the user data into the users table
                 $query = "INSERT INTO users (email, username, password, role)
                           VALUES (:email, :username, :password, :role);";
@@ -125,25 +142,36 @@ if (isset($_POST['setup-submit'])) {
                 
                 // Hash the password before binding it
                 $password = password_hash($post_vars['adminpass'], PASSWORD_DEFAULT);
-
+        
                 $stmt->bindParam(':email', $post_vars['adminemail'], PDO::PARAM_STR);
                 $stmt->bindParam(':password', $password, PDO::PARAM_STR); // Now the hashed password is bound
                 $stmt->bindParam(':role', $role, PDO::PARAM_STR); // Assuming $role is set to 'admin' beforehand
                 $stmt->bindParam(':username', $post_vars['adminuser'], PDO::PARAM_STR);
-
+        
                 $email = filter_var($post_vars['adminemail'], FILTER_SANITIZE_EMAIL);
                 $role = 'admin';
-                $username = $post_vars['adminuser'];
-
-                // The variables are now assigned, so you can execute the statement
+        
+                // Execute the statement
                 $stmt->execute();
-
+        
+                // Get the last inserted ID (the user_id for the new user)
+                $lastUserId = $pdo->lastInsertId();
+        
+                // Insert a row into the user_data table for the new user
+                $query = "INSERT INTO user_data (user_id, theme_accent)
+                          VALUES (:user_id, :theme_accent);";
+                $stmt = $pdo->prepare($query);
+        
+                $stmt->bindParam(':user_id', $lastUserId, PDO::PARAM_INT);
+                $stmt->bindParam(':theme_accent', $theme_accent, PDO::PARAM_STR);
+        
+                $theme_accent = '#000000'; // Set the default theme_accent
+        
+                // Execute the statement
+                $stmt->execute();
             } catch (PDOException $e) {
-                // How did that happen....
-                // Callback to setup pagewith error code from db
-                $code = $e->getCode();
-                // header("Location: ../setup/installation.php?error=dbError&code=$code");
-                die($e->getMessage());
+                // Handle the error, for example: log it, display an error message, etc.
+                echo "Error: " . $e->getMessage();
             }
             /**
              * @todo add try catch for bran_config
@@ -152,7 +180,6 @@ if (isset($_POST['setup-submit'])) {
             // if success, redirect to login page
             header("Location: ../login?install=success");
         }
-
         // begin setup
         bran_setup($post_vars);
     } else {

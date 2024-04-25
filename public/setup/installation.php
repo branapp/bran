@@ -1,6 +1,10 @@
 <?php 
 
-include "../assets/templates/header.php"
+include $_SERVER['DOCUMENT_ROOT'] . "/assets/templates/header.php";
+if ($installed) {
+  header("Location: ../login");
+  exit();
+}
 ?>
 
 <body>

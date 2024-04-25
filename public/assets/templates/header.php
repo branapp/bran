@@ -3,7 +3,7 @@
  * requires bran config file.
  * CHECKS IF BRAN IS INSTALLED
  */
-
+session_start();
  $base_dir = $_SERVER['DOCUMENT_ROOT'] . "/../";
  include "$base_dir/bran-config.php";
 
@@ -55,9 +55,15 @@ body {
             <div class="container-fluid">
                 <h2 class="navbar-brand"><?php echo '\\\\bran\\'. basename($initial_file_dir) ?></h2>
                 </ul>
-                <div class="d-flex">
-                    <!-- <p>hi</p> -->
-                </div>
+                <?php
+                if (isset($_SESSION['cuid'])):
+                ?>
+                    <div class="d-flex">
+                        <a class="nav-link" aria-current="page" href="../inc/logout.inc.php">Sign out</a>
+                    </div>
+                <?php
+                endif;
+                ?>
                 </div>
             </div>
         </nav>
