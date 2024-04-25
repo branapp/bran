@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('../assets/templates/header.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/assets/templates/header.php');
 if (isset($_SESSION['cuid'])) :
     header("Location: ../dashboard");
     exit();
