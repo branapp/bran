@@ -15,7 +15,7 @@ endif;
             <div class="d-flex align-items-center justify-content-center">
                 <img src="../assets/img/bran.png" alt="bran" class="logo">
             </div>
-        <form action="../inc/signup.inc.php" method="POST" class="login-form">
+        <form action="../inc/register.inc.php" method="POST" class="login-form">
             <h3 class="inline-form-title">user registration</h3>
 
                 <div class="mb-3">
