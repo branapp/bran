@@ -13,6 +13,10 @@ else:
     header("$base_dir/public/login");
 endif;
 
+$included_files = get_included_files();
+$initial_file = $included_files[0];
+$initial_file_dir = dirname($initial_file);
+
 if (isset($_SESSION['userid'])) {
     include $_SERVER['DOCUMENT_ROOT']."/inc/connect.inc.php";
     $stmt = $pdo->prepare("SELECT theme_accent FROM user_data WHERE user_id = :user_id");
@@ -20,9 +24,6 @@ if (isset($_SESSION['userid'])) {
     $stmt->execute();
     $user_pref = $stmt->fetch(PDO::FETCH_ASSOC);
     
-    $included_files = get_included_files();
-    $initial_file = $included_files[0];
-    $initial_file_dir = dirname($initial_file);
 }
 ?>
 <!DOCTYPE html>
