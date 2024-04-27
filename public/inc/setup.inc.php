@@ -122,7 +122,6 @@ if (isset($_POST['setup-submit'])) {
                 $query = "CREATE TABLE IF NOT EXISTS user_data (
                     id INT(11) NOT NULL AUTO_INCREMENT,
                     user_id INT(11) NOT NULL,
-                    discord_id INT(11) DEFAULT NULL,
                     nickname VARCHAR(32),
                     pfp_path VARCHAR(255) DEFAULT NULL,
                     bran_total INT(11),
@@ -165,7 +164,7 @@ if (isset($_POST['setup-submit'])) {
                 $stmt->bindParam(':user_id', $lastUserId, PDO::PARAM_INT);
                 $stmt->bindParam(':theme_accent', $theme_accent, PDO::PARAM_STR);
         
-                $theme_accent = '#000000'; // Set the default theme_accent
+                $theme_accent = '#FF90BC'; // Set the default theme_accent
         
                 // Execute the statement
                 $stmt->execute();

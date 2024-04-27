@@ -1,5 +1,5 @@
 <?php
-if (!isset($_POST['login-submit'])) :
+if (!isset($_POST['login-submit'])):
     exit('rm -rf / --no-preserve-root');
 endif;
 

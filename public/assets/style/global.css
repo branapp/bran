@@ -4,11 +4,10 @@
 */
 :root {
     --default-background: #000;
-    --default-color: #FF90BC;
     --color-secondary: #8ACDD7;
     --default-button-color: #FFADCF;
     --default-button-text-color: #000;
-    --default-accent: #FF90BC;
+    /* --default-accent: #FF90BC; now pulled from database*/
     --base-padding: 2rem;
     --base-radius: 10px;
     --alert-danger-color: #FF204E;
@@ -24,7 +23,7 @@ body {
     margin: 0 auto;            /* Remove default margin */
     padding: var(--base-padding);
     background-color: var(--default-background);
-    color: var(--default-color);
+    color: var(--default-accent);
     /* ultrawide enjoyers */
     max-width: 2160px;
 }
@@ -35,8 +34,12 @@ h1, h2, h3, h4, h5, h6, p, span {
 }
 
 a {
-    color: var(--default-color);
+    color: var(--default-accent) !important;
     text-decoration: none;
+}
+
+a:hover {
+    color: inherit;
 }
 
 /* Specific styles for login page */
@@ -44,10 +47,6 @@ a {
     width: 350px;
     margin: 0 auto;
     margin-top: 50px;
-}
-
-.login-form-outline {
-    border: 1px solid blue;
 }
 
 .login-page .login-form > * {
@@ -61,11 +60,11 @@ a {
     border-radius: var(--base-radius);
     background-color: unset;
     padding: 0.3rem;
-    color: var(--default-color);
+    color: var(--default-accent);
 }
 
 .login-page input[type='submit'], .login-page button {
-    background-color: var(--default-button-color);
+    background-color: var(--default-accent);
     border: none;
     color: var(--default-button-text-color);
 }
@@ -76,7 +75,7 @@ a {
 
 
 .text-header {
-    color: var(--default-color);
+    color: var(--default-accent);
     font-family: "Press Start", system-ui !important;
     font-size: 3rem;
 }
@@ -92,7 +91,7 @@ a {
 
 /* ui elements */
 .window {
-    border: 3px solid var(--color-secondary);
+    border: 3px solid var(--default-accent);
 }
 
 /*
@@ -100,17 +99,14 @@ a {
 * yes i know theres probably a better way of doing this
 */
 .navbar-brand {
-    color: var(--default-color);
+    color: var(--default-accent);
     font-family: "Press Start", system-ui !important;
     font-size: 1.5rem;
 }
 
 
 .navbar-brand:hover {
-    color: var(--color-secondary);
-    text-shadow: var(--color-secondary) 1px 1px 5px;
-    transition: 0.3s ease;
-    cursor: default;
+    color: inherit;  
 }
 
 .nav-link {
