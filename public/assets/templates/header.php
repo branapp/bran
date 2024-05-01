@@ -23,7 +23,6 @@ if (isset($_SESSION['userid'])):
     $stmt->bindParam(':user_id', $_SESSION['userid'], PDO::PARAM_INT);
     $stmt->execute();
     $user_pref = $stmt->fetch(PDO::FETCH_ASSOC);
-    
 endif;
 ?>
 <!DOCTYPE html>
@@ -34,6 +33,8 @@ endif;
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
         <link rel="stylesheet" href="../assets/style/global.css">
         <link rel="stylesheet" href="../assets/style/fonts.css">
+        <title><?php echo basename($initial_file_dir) ?> | bran.exe</title>
+        <link rel="icon" href="../assets/img/bran.png">
         <style>
             :root {
                 --default-accent: <?php 

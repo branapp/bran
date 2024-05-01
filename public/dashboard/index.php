@@ -6,4 +6,9 @@ if (!isset($_SESSION['cuid'])) :
 endif;
 
 include "../assets/templates/header.php";
+
 ?>
+
+<div class="dashboard">
+
+</div>
