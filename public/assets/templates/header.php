@@ -17,14 +17,14 @@ $included_files = get_included_files();
 $initial_file = $included_files[0];
 $initial_file_dir = dirname($initial_file);
 
-if (isset($_SESSION['userid'])) {
+if (isset($_SESSION['userid'])):
     include $_SERVER['DOCUMENT_ROOT']."/inc/connect.inc.php";
     $stmt = $pdo->prepare("SELECT theme_accent FROM user_data WHERE user_id = :user_id");
     $stmt->bindParam(':user_id', $_SESSION['userid'], PDO::PARAM_INT);
     $stmt->execute();
     $user_pref = $stmt->fetch(PDO::FETCH_ASSOC);
     
-}
+endif;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +36,15 @@ if (isset($_SESSION['userid'])) {
         <link rel="stylesheet" href="../assets/style/fonts.css">
         <style>
             :root {
-                --default-accent: <?php //echo $user_pref['theme_accent']; ?> white !important;
+                --default-accent: <?php 
+                /**
+                 * @todo fix this so it actually works lmao
+                 */
+                    if(isset($_SESSION['userid'])):
+                        echo $user_pref['theme_accent'];
+                    else:
+                        echo "#FF90BC";                    
+                    endif; ?>
             }
             body {
                 background-image: url('../<?php $inital_file_dir ?>assets/img/c_fog_darkbluepurupl.png');
@@ -58,7 +66,6 @@ if (isset($_SESSION['userid'])) {
                 if (isset($_SESSION['cuid'])):
                     ?>
                     <div class="d-flex">
-                        <?php echo $user_pref['theme_accent']."e"; ?>
                         <a class="nav-link" aria-current="page" href="../inc/logout.inc.php">Sign out</a>
                     </div>
                 <?php
