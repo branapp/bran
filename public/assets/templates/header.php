@@ -40,7 +40,7 @@ endif;
                 /**
                  * @todo fix this so it actually works lmao
                  */
-                    if(isset($_SESSION['userid'])):
+                    if(null !== $_SESSION['cuid'] && $user_pref['theme_accent'] !== null):
                         echo $user_pref['theme_accent'];
                     else:
                         echo "#FF90BC";                    
