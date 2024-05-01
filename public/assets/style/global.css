@@ -69,7 +69,7 @@ a:hover {
     color: var(--default-button-text-color);
 }
 
-.login-page .logo {
+.logo {
     max-width: 250px; /* Logo size specifically for the login page */
 }
 
@@ -92,6 +92,22 @@ a:hover {
 /* ui elements */
 .window {
     border: 3px solid var(--default-accent);
+    margin: 0 1rem 0 1rem;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.ui {
+    font-family: "Revx", system-ui;
+    margin-bottom: 0.25rem;
+}
+
+.ui-title {
+    font-size: 2rem;
+}
+
+.ui-subtitle {
+    font-size: 1.5rem;
 }
 
 /*

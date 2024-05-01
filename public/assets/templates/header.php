@@ -58,7 +58,7 @@ endif;
 </head>
 
 <body>
-    <header>
+    <header class="mb-5">
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <h2 class="navbar-brand"><?php echo '\\\\bran\\'. basename($initial_file_dir) ?></h2>
