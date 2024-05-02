@@ -133,11 +133,14 @@ if (isset($_POST['setup-submit'])) {
                     option_name VARCHAR(255) NOT NULL,
                     option_value VARCHAR(255) NOT NULL,
                     PRIMARY KEY (option_name)
-                );
+                );";
                 
-                INSERT INTO bran_options (option_name, option_value) VALUES ('motd', 'welcome to bran'),
+                $pdo->exec($query);
+
+                $query = "INSERT INTO bran_options (option_name, option_value) VALUES ('motd', 'welcome to bran'),
                 ('user_registration', 'enabled');";
 
+                $pdo->exec($query);
         
                 // Insert the user data into the users table
                 $query = "INSERT INTO users (email, username, password, role)

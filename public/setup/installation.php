@@ -1,6 +1,6 @@
 <?php 
 
-if ($installed) {
+if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/../bran-config.php")) {
   header("Location: ../login");
   exit();
 }
