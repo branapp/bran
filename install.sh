@@ -56,7 +56,7 @@ clear
 echo "installing dependancies and configuring..."
 cd bran
 touch bran-config.php
-chown www-data:www-data bran-config.php
+sudo chown www-data:www-data bran-config.php
 sudo chmod 600 bran-config.php
 sleep 1
 cd api
@@ -88,5 +88,4 @@ sudo systemctl enable bran-api
 sudo systemctl start bran-api
 fi
 
-sudo chown -R www-data:www-data $install_path/bran
 echo "installation complete"
