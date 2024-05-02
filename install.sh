@@ -57,7 +57,7 @@ echo "installing dependancies and configuring..."
 cd bran
 touch bran-config.php
 chown www-data:www-data bran-config.php
-chmod 600 bran-config.php
+sudo chmod 600 bran-config.php
 sleep 1
 cd api
 npm install
