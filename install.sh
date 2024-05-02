@@ -88,5 +88,5 @@ sudo systemctl enable bran-api
 sudo systemctl start bran-api
 fi
 
-chown -R www-data:www-data $install_path/bran
+sudo chown -R www-data:www-data $install_path/bran
 echo "installation complete"
