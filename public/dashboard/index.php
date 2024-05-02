@@ -28,8 +28,8 @@ endif;
                 </div>
                 <div class="text-center">
                     <h3 class="ui ui-title" id="greeting"><?php echo $_SESSION['cuid_username'] ?></h3>
-                    <h6 class="ui text-lowercase">INSERT MOTD HERE</h6>
-                    <h3 class="ui ui-subtitle">BALANCE <?php echo $bran_daily ?? '???' ?></h3>
+                    <h6 class="ui text-lowercase"><?php echo $bran_options['motd'] ?? "something aint right..." ?></h6>
+                    <h3 class="ui ui-subtitle">BALANCE <?php echo $user_data['bran_daily'] ?? 'idk' ?></h3>
                 </div>
             </div>
         </div>

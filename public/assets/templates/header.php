@@ -6,6 +6,7 @@
 session_start();
  $base_dir = $_SERVER['DOCUMENT_ROOT'] . "/../";
  include "$base_dir/bran-config.php";
+ include $_SERVER['DOCUMENT_ROOT']."/inc/connect.inc.php";
 
 if ($installed === false): 
     header("$base_dir/public/setup/installation.php");
@@ -18,12 +19,18 @@ $initial_file = $included_files[0];
 $initial_file_dir = dirname($initial_file);
 
 if (isset($_SESSION['cuid'])):
-    include $_SERVER['DOCUMENT_ROOT']."/inc/connect.inc.php";
     $stmt = $pdo->prepare("SELECT * FROM user_data WHERE user_id = :user_id");
     $stmt->bindParam(':user_id', $_SESSION['cuid'], PDO::PARAM_INT);
     $stmt->execute();
-    $user_pref = $stmt->fetch(PDO::FETCH_ASSOC);
+    $user_data = $stmt->fetch(PDO::FETCH_ASSOC);
 endif;
+
+// make bran_options globally available
+
+$stmt = $pdo->prepare("SELECT * FROM bran_options");
+$stmt->execute();
+$bran_options = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$bran_options = array_column($bran_options, 'option_value', 'option_name');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +43,7 @@ endif;
         <title><?php echo basename($initial_file_dir) ?> | bran.exe</title>
         <style>
             :root {
-                --default-accent: #<?php echo $user_pref['theme_accent'] ?? "FF90BC" ?>
+                --default-accent: #<?php echo $user_data['theme_accent'] ?? "FF90BC" ?>
             }
             body {
                 background-image: url('../<?php $inital_file_dir ?>assets/img/c_fog_darkbluepurupl.png');
@@ -47,12 +54,14 @@ endif;
             }
 
             .window {
-                background-color: #<?php echo $user_pref['theme_accent'] ?>10;
+                background-color: #<?php echo $user_data['theme_accent'] ?>10;
             }
         </style>
 </head>
 
 <body>
+    <!-- debug -->
+    <?php var_dump($user_data); ?>
     <header class="mb-5">
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
