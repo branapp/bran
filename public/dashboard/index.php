@@ -17,7 +17,7 @@ if (isset($_SESSION['cuid'])):
     extract($user_data);
 endif;
 ?>
-
+<script src="../<?php $base_dir ?>assets/js/greetings.js"></script>
 <div class="dashboard">
     <div class="row">
         <div class="col-md-4 col-sm-12">
@@ -27,7 +27,7 @@ endif;
                     <img src="../assets/img/bran.png" alt="bran" class="logo">
                 </div>
                 <div class="text-center">
-                    <h3 class="ui ui-title">Good day, <?php echo $_SESSION['cuid_username'] ?></h3>
+                    <h3 class="ui ui-title" id="greeting"><?php echo $_SESSION['cuid_username'] ?></h3>
                     <h6 class="ui text-lowercase">INSERT MOTD HERE</h6>
                     <h3 class="ui ui-subtitle">BALANCE <?php echo $bran_daily ?? '???' ?></h3>
                 </div>
