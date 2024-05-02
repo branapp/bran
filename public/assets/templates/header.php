@@ -54,6 +54,15 @@ endif;
                 background-repeat: no-repeat;   
                 background-attachment: fixed;
             }
+
+            .window {
+                background-color: <?php 
+                    if(null !== $_SESSION['cuid'] && $user_pref['theme_accent'] !== null):
+                        echo $user_pref['theme_accent']."10";
+                    else:
+                        echo "#FF90BC10";                    
+                    endif; ?>
+            }
         </style>
 </head>
 
