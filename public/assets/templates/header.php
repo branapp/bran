@@ -17,10 +17,10 @@ $included_files = get_included_files();
 $initial_file = $included_files[0];
 $initial_file_dir = dirname($initial_file);
 
-if (isset($_SESSION['userid'])):
+if (isset($_SESSION['cuid'])):
     include $_SERVER['DOCUMENT_ROOT']."/inc/connect.inc.php";
-    $stmt = $pdo->prepare("SELECT theme_accent FROM user_data WHERE user_id = :user_id");
-    $stmt->bindParam(':user_id', $_SESSION['userid'], PDO::PARAM_INT);
+    $stmt = $pdo->prepare("SELECT * FROM user_data WHERE user_id = :user_id");
+    $stmt->bindParam(':user_id', $_SESSION['cuid'], PDO::PARAM_INT);
     $stmt->execute();
     $user_pref = $stmt->fetch(PDO::FETCH_ASSOC);
 endif;
@@ -37,15 +37,7 @@ endif;
         <link rel="icon" href="../assets/img/bran.png">
         <style>
             :root {
-                --default-accent: <?php 
-                /**
-                 * @todo fix this so it actually works lmao
-                 */
-                    if(null !== $_SESSION['cuid'] && $user_pref['theme_accent'] !== null):
-                        echo $user_pref['theme_accent'];
-                    else:
-                        echo "#FF90BC";                    
-                    endif; ?>
+                --default-accent: #<?php echo $user_pref['theme_accent'] ?? "FF90BC" ?>
             }
             body {
                 background-image: url('../<?php $inital_file_dir ?>assets/img/c_fog_darkbluepurupl.png');
@@ -56,12 +48,7 @@ endif;
             }
 
             .window {
-                background-color: <?php 
-                    if(null !== $_SESSION['cuid'] && $user_pref['theme_accent'] !== null):
-                        echo $user_pref['theme_accent']."10";
-                    else:
-                        echo "#FF90BC10";                    
-                    endif; ?>
+                background-color: #<?php echo $user_pref['theme_accent'] ?>10;
             }
         </style>
 </head>
