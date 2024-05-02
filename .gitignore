@@ -1,9 +1,7 @@
 bran-config.php
 # node
-node_modules
+api/node_modules
+api/api-config.json
 package-lock.json
 # osticket local
 ost/*
-# bot
-bot/config.json
-bot/logs/*

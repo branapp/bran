@@ -1,8 +1,9 @@
 const express = require('express');
+const { getUserData } = require('./actions/daily.js');
 const app = express();
 
-app.get('/', (req, res) => {
-    res.send({ "message": "why are you here" });
+app.get('/', () => {
+    getUserData().then(() => { });
 });
 
 let port = 3000;
