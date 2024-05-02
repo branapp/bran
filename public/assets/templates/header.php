@@ -34,7 +34,6 @@ endif;
         <link rel="stylesheet" href="../assets/style/global.css">
         <link rel="stylesheet" href="../assets/style/fonts.css">
         <title><?php echo basename($initial_file_dir) ?> | bran.exe</title>
-        <link rel="icon" href="../assets/img/bran.png">
         <style>
             :root {
                 --default-accent: #<?php echo $user_pref['theme_accent'] ?? "FF90BC" ?>

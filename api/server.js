@@ -1,12 +1,21 @@
 const express = require('express');
-const { getUserData } = require('./actions/daily.js');
 const app = express();
 
-app.get('/', () => {
-    getUserData().then(() => { });
+app.get('/', (req, res) => {
+    res.status(418).send({
+        message: 'not broken',
+    });
+});
+
+app.get('/ping', (req, res) => {
+    const timestamp = Date.now();
+    res.status(200).send({
+        message: 'pong',
+        timestamp: timestamp,
+    });
 });
 
 let port = 3000;
 app.listen(port, () => {
-    console.log('Server is running on port 3000');
+    console.log('bran is listening on port ' + port);
 });

@@ -17,6 +17,8 @@ endif;
             </div>
             <form action="../inc/login.inc.php" class="login-form" method="POST">
                 <h3 class="inline-form-title">login to bran</h3>
+                <?php include("../inc/gitinfo.inc.php") ?>
+                <p><?php echo $git_commit_id ?> on <?php echo $git_branch ?> branch.</p>
                 <label for="username">Username</label><br>
                 <input type="text" id="username" name="username" placeholder="Enter username"><br>
                 <label for="password">Password</label><br>
@@ -24,8 +26,7 @@ endif;
                 <input type="submit" name="login-submit" class="b-button" value="Login">
                 <p class="text-white small">This app is only to be used by authorized users. Please report
 suspicious activity to security@tism.team</p>
-                <?php include("../inc/gitinfo.inc.php") ?>
-                <p><?php echo $git_commit_id ?> on <?php echo $git_branch ?> branch.</p>
+                <p class="text-white small">New around here? <a href="../register">Register here.</a></p>
             </form>
         </div>
     </div>

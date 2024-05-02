@@ -53,6 +53,19 @@ else :
         $stmt->bindParam(':password', $hashedPassword, PDO::PARAM_STR);
         $stmt->bindParam(':role', $role, PDO::PARAM_STR);
         $stmt->execute();
+
+        // Insert a row into the user_data table for the new user
+        $query = "INSERT INTO user_data (user_id, theme_accent)
+                  VALUES (:user_id, :theme_accent);";
+        $stmt = $pdo->prepare($query);
+
+        $stmt->bindParam(':user_id', $pdo->lastInsertId(), PDO::PARAM_INT);
+        $stmt->bindParam(':theme_accent', $theme_accent, PDO::PARAM_STR);
+
+        $theme_accent = 'FF90BC'; // Set the default theme_accent
+
+        // Execute the statement
+        $stmt->execute();
     endif;
 endif;
 

@@ -10,17 +10,17 @@ const knex = require('knex')({
     }
 });
 
-async function getUserData() {
+(async () => {
     try {
         // get data from the user_data table from the sql database
         const rows = await knex('user_data').select();
-        dataArray = rows.map((row) => {
+        const dataArray = rows.map((row) => {
+            console.log(row);
             return { ...row };
         });
         return dataArray;
     } catch (error) {
         console.error(error);
+        return [];
     }
-}
-
-module.exports = getUserData;
+})();
