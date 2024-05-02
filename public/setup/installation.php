@@ -1,12 +1,37 @@
 <?php 
 
-include $_SERVER['DOCUMENT_ROOT'] . "/assets/templates/header.php";
 if ($installed) {
   header("Location: ../login");
   exit();
 }
+
+$included_files = get_included_files();
+$initial_file = $included_files[0];
+$initial_file_dir = dirname($initial_file);
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+        <link rel="stylesheet" href="../assets/style/global.css">
+        <link rel="stylesheet" href="../assets/style/fonts.css">
+        <title><?php echo basename($initial_file_dir) ?> | bran.exe</title>
+        <style>
+            :root {
+                --default-accent: #FF90BC;
+            }
+            body {
+                background-image: url('../<?php $inital_file_dir ?>assets/img/c_fog_darkbluepurupl.png');
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;   
+                background-attachment: fixed;
+            }
+        </style>
+</head>
 <body>
 <div class="container">
   <div class="row">
