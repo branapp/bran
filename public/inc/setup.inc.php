@@ -133,6 +133,17 @@ if (isset($_POST['setup-submit'])) {
                 );";
         
                 $pdo->exec($query);
+
+                // create bran_options table and set default values
+                $query = "CREATE TABLE IF NOT EXISTS bran_options (
+                    option_name VARCHAR(255) NOT NULL,
+                    option_value VARCHAR(255) NOT NULL,
+                    PRIMARY KEY (option_name)
+                );
+                
+                INSERT INTO bran_options (option_name, option_value) VALUES ('motd', 'welcome to bran'),
+                ('user_registration', 'enabled');";
+
         
                 // Insert the user data into the users table
                 $query = "INSERT INTO users (email, username, password, role)
