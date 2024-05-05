@@ -20,11 +20,11 @@ sleep 1
 # check for LAMP stack
 echo "checking for a LAMP stack..."
 sleep 1
-if ! command -v apache2 >/dev/null 2>&1 || ! command -v mysql >/dev/null 2>&1 || ! command -v php >/dev/null 2>&1; then
+if ! command -v apache2 >/dev/null 2>&1 || ! command -v mariadb >/dev/null 2>&1 || ! command -v php >/dev/null 2>&1; then
     sleep 1
     echo "LAMP stack is not installed. Installing..."
     sudo apt update
-    sudo apt install apache2 mysql-server php8.1 -y
+    sudo apt install apache2 mariadb-server php8.1 -y
 
     # enable apache2
     systemctl enable apache2
