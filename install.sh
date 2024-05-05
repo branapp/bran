@@ -24,7 +24,12 @@ if ! command -v apache2 >/dev/null 2>&1 || ! command -v mariadb >/dev/null 2>&1 
     sleep 1
     echo "LAMP stack is not installed. Installing..."
     sudo apt update
-    sudo apt install apache2 mariadb-server php -y
+    sudo apt install apache2 mariadb-server php8.1 -y
+
+    # enable apache2
+    systemctl enable apache2
+    systemctl start apache2
+
 else
     echo "LAMP stack is already installed."
     sleep 1
@@ -46,7 +51,7 @@ echo "installing bran to $install_path from the $branch branch. please wait..."
 sleep 1
 
 cd $install_path
-git clone https://github.com/tysonlmao/bran.git || { echo "Failed to switch to clone repository. Is bran already installed?"; exit 1; }
+sudo git clone https://github.com/tysonlmao/bran || { echo "Failed to switch to clone repository. Is bran already installed?"; exit 1; }
 git switch $branch
 clear
 echo "bran cloned successfully"
@@ -54,10 +59,12 @@ sleep 2
 clear
 
 echo "installing dependancies and configuring..."
+sudo chown -R www-data:www-data bran
 cd bran
 touch bran-config.php
-sudo chown www-data:www-data bran-config.php
 sudo chmod 600 bran-config.php
+sudo a2enmod php8.1
+sudo apt install php8.1-pdo -y
 sleep 1
 cd api
 npm install
