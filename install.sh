@@ -24,7 +24,7 @@ if ! command -v apache2 >/dev/null 2>&1 || ! command -v mariadb >/dev/null 2>&1 
     sleep 1
     echo "LAMP stack is not installed. Installing..."
     sudo apt update
-    sudo apt install apache2 mariadb-server php -y
+    sudo apt install apache2 mariadb-server php8.1 -y
 else
     echo "LAMP stack is already installed."
     sleep 1
@@ -59,6 +59,8 @@ cd branss
 touch bran-config.php
 sudo chown www-data:www-data bran-config.php
 sudo chmod 600 bran-config.php
+sudo a2enmod php8.1
+sudo apt install php8.1-pdo -y
 sleep 1
 cd api
 npm install
