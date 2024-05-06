@@ -1,29 +1,50 @@
-# Use a base image that includes Ubuntu with PHP, Apache, and Node.js
-FROM ubuntu:latest
+FROM debian:buster
 
+# Set environment variables
+ENV PHP_VERSION=8.1
+ENV NODE_VERSION=14
+
+# Update the package list
 RUN apt-get update && \
-    apt-get install -y apache2 mariadb-server php8.1 php8.1-pdo php8.1-cli libapache2-mod-php8.1 git npm
+    apt-get install -y curl gnupg lsb-release
 
-RUN a2enmod php8.1 rewrite && \
-    systemctl enable apache2
+# Import the key for the PHP repository
+RUN curl -sS https://packages.sury.org/php/apt.gpg | apt-key add -
 
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
-    apt-get install -y nodejs
+# Add the PHP repository to the sources list
+RUN echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
 
+# Install required packages
+RUN apt-get update && \
+    apt-get install -y software-properties-common apache2 mariadb-server libapache2-mod-php${PHP_VERSION} php${PHP_VERSION} php${PHP_VERSION}-mysql git && \
+    # curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash - && \
+    # apt-get install -y nodejs && \
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/*
+
+# Enable required Apache modules
+RUN a2enmod php${PHP_VERSION} rewrite && \
+    echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
+# Set working directory
 WORKDIR /var/www/html
-COPY . .
 
-RUN touch bran-config.php && \
-    chown www-data:www-data bran-config.php && \
-    chmod 600 bran-config.php
+# Clone bran repository
+RUN git clone https://github.com/branapp/bran.git
 
-WORKDIR /var/www/html/api
-RUN npm install
+# Create and configure bran-config.php
+RUN touch bran/bran-config.php && \
+    chown www-data:www-data bran/bran-config.php && \
+    chmod 600 bran/bran-config.php
 
-WORKDIR /var/www/html
-RUN chown -R www-data:www-data .
+# Change ownership of project directory
+RUN chown -R www-data:www-data /var/www/html/bran
 
-EXPOSE 80 4567
+# Set webroot
+RUN sed -i 's|/var/www/html|/var/www/html/bran/public|' /etc/apache2/sites-available/000-default.conf
 
-CMD service apache2 start && \
-    node /var/www/html/api/server.js
+# Start Apache and Node.js server
+CMD ["apache2ctl", "-D", "FOREGROUND"]
+
+# Expose ports
+EXPOSE 80
