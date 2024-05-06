@@ -4,6 +4,9 @@
 
 explain bran here
 
-# Installation
+## Installation
 
-just do it.
+# Docker
+```docker build https://github.com/branapp/bran.git```
+
+
