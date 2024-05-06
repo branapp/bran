@@ -7,7 +7,10 @@ explain bran here
 # Installation
 
 ## Docker
-To use the provided docker image use the command below
-```docker build https://github.com/branapp/bran.git```
+To use the provided docker image use the command below.
+
+```bash
+docker build https://github.com/branapp/bran.git
+```
 
 
