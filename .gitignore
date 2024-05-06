@@ -5,3 +5,4 @@ api/api-config.json
 package-lock.json
 # osticket local
 ost/*
+.vscode
