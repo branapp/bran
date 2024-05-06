@@ -17,7 +17,7 @@ bran.get('/ping', (req, res) => {
     });
 });
 
-let port = 3000;
+let port = 3337;
 bran.listen(port, () => {
     console.log('bran is listening on port ' + port);
 });
