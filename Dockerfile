@@ -32,14 +32,6 @@ WORKDIR /var/www/html
 # Clone bran repository
 RUN git clone https://github.com/branapp/bran.git
 
-# Create and configure bran-config.php
-RUN touch bran/bran-config.php && \
-    chown www-data:www-data bran/bran-config.php && \
-    chmod 600 bran/bran-config.php
-
-# Change ownership of project directory
-RUN chown -R www-data:www-data /var/www/html/bran
-
 # Set webroot
 RUN sed -i 's|/var/www/html|/var/www/html/bran/public|' /etc/apache2/sites-available/000-default.conf
 
