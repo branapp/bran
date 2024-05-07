@@ -26,8 +26,8 @@ RUN apt-get update && apt-get install -y \
 RUN a2enmod php${PHP_VERSION} rewrite && \
     echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
-# Set the working directory
 WORKDIR /var/www/html
+RUN chown -R www-data:www-data /var/www/html
 
 # Clone the repository as www-data
 RUN sudo -u www-data git clone https://github.com/branapp/bran.git && \
