@@ -1,4 +1,16 @@
-![bran](https://github.com/tysonlmao/bran/assets/28374251/77b1d726-8f31-424e-b68e-eb75f5fee5dd)
-Bran
+![screenshot](https://github.com/branapp/bran/assets/28374251/e159dfca-36ad-467d-b4de-dd802d241573)
+
+# bran
+
+explain bran here
+
+# Installation
+
+## Docker
+To use the provided docker image use the command below.
+
+```bash
+docker build https://github.com/branapp/bran.git
+```
 
 
