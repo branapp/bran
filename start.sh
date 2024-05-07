@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Start MariaDB service
-service mariadb start
+service mysql start
 
 # Wait for MariaDB to start
 sleep 10
@@ -19,6 +19,11 @@ initialize_db() {
 
 if [ ! -f /var/lib/mysql/db_initialized ]; then
     initialize_db
+fi
+
+if [ ! -f /var/www/html/bran/bran-config.php ]; then
+    touch /var/www/html/bran/bran-config.php
+    chown www-data:www-data /var/www/html/bran/bran-config.php
 fi
 
 # Start Apache in the foreground
