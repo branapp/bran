@@ -8,6 +8,7 @@ sleep 10
 
 # Function to initialize the database and create a user
 initialize_db() {
+    mysql -u root -e "CREATE DATABASE brandb;"
     mysql -u root -e "CREATE USER 'bran'@'%' IDENTIFIED BY 'bran';"
     mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'bran'@'%' WITH GRANT OPTION;"
     mysql -u root -e "FLUSH PRIVILEGES;"
