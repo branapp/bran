@@ -118,7 +118,7 @@ if (isset($_POST['setup-submit'])) {
                     user_id INT(11) NOT NULL,
                     nickname VARCHAR(32),
                     pfp_path VARCHAR(255) DEFAULT NULL,
-                    bran_total INT(11) DEFAULT 500,
+                    bran_total INT(11) DEFAULT 0,
                     bran_daily INT(11) DEFAULT 500,
                     theme ENUM('light', 'dark', 'system') DEFAULT 'system',
                     theme_accent VARCHAR(7),
