@@ -62,7 +62,7 @@ else :
         $stmt->bindParam(':user_id', $pdo->lastInsertId(), PDO::PARAM_INT);
         $stmt->bindParam(':theme_accent', $theme_accent, PDO::PARAM_STR);
 
-        $theme_accent = 'FF90BC'; // Set the default theme_accent
+        $theme_accent = NULL; // Set the default theme_accent
 
         // Execute the statement
         $stmt->execute();
