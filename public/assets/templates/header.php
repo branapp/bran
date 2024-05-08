@@ -31,6 +31,12 @@ $stmt = $pdo->prepare("SELECT * FROM bran_options");
 $stmt->execute();
 $bran_options = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $bran_options = array_column($bran_options, 'option_value', 'option_name');
+
+if (!is_null($user_data['theme_accent'])):
+    $theme_accent = $user_data['theme_accent'];
+else:
+    $theme_accent = "FF90BC";
+endif;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +49,7 @@ $bran_options = array_column($bran_options, 'option_value', 'option_name');
         <title><?php echo basename($initial_file_dir) ?> | bran.exe</title>
         <style>
             :root {
-                --default-accent: #<?php echo $user_data['theme_accent'] ?? "FF90BC" ?>
+                --default-accent: #<?php echo $theme_accent ?>
             }
             body {
                 background-image: url('../<?php $inital_file_dir ?>assets/img/c_fog_darkbluepurupl.png');
@@ -54,29 +60,27 @@ $bran_options = array_column($bran_options, 'option_value', 'option_name');
             }
 
             .window {
-                background-color: #<?php echo $user_data['theme_accent'] ?>10;
+                background-color: #<?php echo $theme_accent ?>10;
             }
         </style>
 </head>
 
 <body>
-    <!-- debug -->
-    <?php var_dump($user_data); ?>
-    <header class="mb-5">
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-                <h2 class="navbar-brand"><?php echo '\\\\bran\\'. basename($initial_file_dir) ?></h2>
-            </ul>
-            <?php
-                if (isset($_SESSION['cuid'])):
-                    ?>
-                    <div class="d-flex">
-                        <a class="nav-link" aria-current="page" href="../inc/logout.inc.php">Sign out</a>
-                    </div>
-                <?php
-                endif;
+<header class="mb-5">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <h2 class="navbar-brand"><?php echo '\\\\bran\\'. basename($initial_file_dir) ?></h2>
+        </ul>
+        <?php
+            if (isset($_SESSION['cuid'])):
                 ?>
+                <div class="d-flex">
+                    <a class="nav-link" aria-current="page" href="../inc/logout.inc.php">Sign out</a>
                 </div>
+            <?php
+            endif;
+            ?>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>

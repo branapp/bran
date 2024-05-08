@@ -1,10 +1,14 @@
-name: Bran production deployment
+name: Bran Deployment
 
 on:
   push:
-    branches: ["production"]
+    branches:
+      - production
+      - develop
   pull_request:
-    branches: ["production"]
+    branches:
+      - production
+      - develop
 
 jobs:
   build:
@@ -14,11 +18,15 @@ jobs:
 
       # Setting the image tag as an environment variable to use across steps
       - name: Set image tag
-        id: prep
-        run: echo "::set-output name=tag::$(date +%s)"
+        run: |
+          if [ "${{ github.ref }}" == "refs/heads/production" ]; then
+            echo "TAG=latest" >> $GITHUB_ENV
+          else
+            echo "TAG=develop" >> $GITHUB_ENV
+          fi
 
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/bran:${{ steps.prep.outputs.tag }}
+        run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/bran:$TAG
 
       - name: Publish the Docker image
         env:
@@ -26,4 +34,4 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
           echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
-          docker push $DOCKER_USERNAME/bran:${{ steps.prep.outputs.tag }}
+          docker push $DOCKER_USERNAME/bran:$TAG

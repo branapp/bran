@@ -3,105 +3,124 @@
 * bran global styles
 */
 :root {
-    --base-padding: 2rem;
-    --base-radius: 10px;
-    --admin-red: #FF204E;
-    --admin-green: #90D26D;
+  --base-padding: 2rem;
+  --base-radius: 10px;
+  --admin-red: #ff204e;
+  --admin-green: #90d26d;
 }
 
 html {
-    height: 100%;  /* Ensure html takes full browser height */
-    scroll-behavior: smooth;
+  height: 100%; /* Ensure html takes full browser height */
+  scroll-behavior: smooth;
 }
 
 body {
-    min-height: 100%;     /* Minimum height is full viewport height */
-    margin: 0 auto;            /* Remove default margin */
-    padding: var(--base-padding);
-    color: var(--default-accent);
-    /* ultrawide enjoyers */
-    max-width: 2160px;
+  min-height: 100%; /* Minimum height is full viewport height */
+  margin: 0 auto; /* Remove default margin */
+  padding: var(--base-padding);
+  color: var(--default-accent);
+  /* ultrawide enjoyers */
+  max-width: 2160px;
 }
 
-
-h1, h2, h3, h4, h5, h6, p, span {
-    margin: 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+  margin: 0;
 }
 
 a {
-    color: var(--default-accent) !important;
-    text-decoration: none;
+  color: var(--default-accent) !important;
+  text-decoration: none;
 }
 
 a:hover {
-    color: inherit;
+  color: inherit;
 }
 
 /* Specific styles for login page */
 .login-page .login-form {
-    width: 350px;
-    margin: 0 auto;
-    margin-top: 50px;
+  width: 350px;
+  margin: 0 auto;
+  margin-top: 50px;
 }
 
 .login-page .login-form > * {
-    margin-bottom: 0.5rem;
-    width: 100%;
+  margin-bottom: 0.5rem;
+  width: 100%;
 }
 
 /* Form elements styling */
 .login-page input {
-    border: 2px solid var(--default-accent);
-    border-radius: var(--base-radius);
-    background-color: unset;
-    padding: 0.3rem;
-    color: var(--default-accent);
+  border: 2px solid var(--default-accent);
+  border-radius: var(--base-radius);
+  background-color: unset;
+  padding: 0.3rem;
+  color: var(--default-accent);
 }
 
-.login-page input[type='submit'], .login-page button {
-    background-color: var(--default-accent);
-    border: none;
+.login-page input[type="submit"],
+.login-page button {
+  background-color: var(--default-accent);
+  color: black;
+  border: none;
 }
 
 .logo {
-    max-width: 250px; /* Logo size specifically for the login page */
+  max-width: 250px; /* Logo size specifically for the login page */
 }
 
-
 .text-header {
-    color: var(--default-accent);
-    font-family: "Press Start", system-ui !important;
-    font-size: 3rem;
+  color: var(--default-accent);
+  font-family: "Press Start", system-ui !important;
+  font-size: 3rem;
 }
 
 .info {
-    font-family: "Revx", system-ui !important;
-    font-size: 1.5rem;
+  font-family: "Revx", system-ui !important;
+  font-size: 1.5rem;
 }
 
 .vh80 {
-    min-height: 80vh;
+  min-height: 80vh;
 }
 
 /* ui elements */
 .window {
-    border: 3px solid var(--default-accent);
-    margin: 0 1rem 0 1rem;
-    padding: 2rem;
-    border-radius: 1rem;
+  border: 3px solid var(--default-accent);
+  min-height: 450px;
+  margin: 0 1rem 0 1rem;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+.leaderboard {
+  font-family: "Press Start" !important;
+  font-size: 1.5rem;
+  overflow: scroll;
+}
+
+table.leaderboard {
+  width: 100%; /* Full width */
+  border-collapse: collapse; /* No space between borders */
 }
 
 .ui {
-    font-family: "Revx", system-ui;
-    margin-bottom: 0.25rem;
+  font-family: "Revx", system-ui;
+  margin-bottom: 0.25rem;
 }
 
 .ui-title {
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
 .ui-subtitle {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 /*
@@ -109,22 +128,21 @@ a:hover {
 * yes i know theres probably a better way of doing this
 */
 .navbar-brand {
-    color: var(--default-accent);
-    font-family: "Press Start", system-ui !important;
-    font-size: 1.5rem;
+  color: var(--default-accent);
+  font-family: "Press Start", system-ui !important;
+  font-size: 1.5rem;
 }
 
-
 .navbar-brand:hover {
-    color: inherit;  
+  color: inherit;
 }
 
 .nav-link {
-    font-family: "Press Start", system-ui !important;
-    font-size: 1.25rem;
+  font-family: "Press Start", system-ui !important;
+  font-size: 1.25rem;
 }
 
 .alert-danger {
-    border: none;
-    background-color: var(--admin-red);
+  border: none;
+  background-color: var(--admin-red);
 }

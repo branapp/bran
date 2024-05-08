@@ -1,12 +1,9 @@
 @font-face {
-    font-family: "Press Start";
-    src:
-        local("Press Start 2P"),
-        url("../fonts/PressStart2P-Regular.ttf")
+  font-family: "Press Start";
+  src: local("Press Start 2P"), url("../fonts/PressStart2P-Regular.ttf");
 }
 
 @font-face {
-    font-family: "Revx";
-    src:
-        url("../fonts/RevxNeue-Regular.ttf")
+  font-family: "Revx";
+  src: url("../fonts/RevxNeue-Regular.ttf");
 }
