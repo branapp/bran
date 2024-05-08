@@ -6,16 +6,27 @@ if (!isset($_SESSION['cuid'])) :
 endif;
 
 include "../assets/templates/header.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/inc/connect.inc.php";
 
 if (isset($_SESSION['cuid'])):
-    include $_SERVER['DOCUMENT_ROOT'] . "/inc/connect.inc.php";
     $stmt = $pdo->prepare("SELECT * FROM user_data WHERE user_id = :user_id");
     $stmt->bindParam(':user_id', $_SESSION['cuid'], PDO::PARAM_INT);
     $stmt->execute();
     $user_data = $stmt->fetch(PDO::FETCH_ASSOC);
 
     extract($user_data);
+    
+    // leaderboard data
+    $sql = "SELECT users.username, users.role, user_data.bran_total FROM user_data JOIN users ON user_data.user_id = users.id ORDER BY user_data.bran_total DESC";
+    $stmt = $pdo->prepare($sql);
+
+    // Execute the query
+    $stmt->execute();
+
+    // Fetch all the results
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 endif;
+
 ?>
 <script src="../<?php $base_dir ?>assets/js/greetings.js"></script>
 <div class="dashboard">
@@ -34,9 +45,19 @@ endif;
             </div>
         </div>
         <div class="col-md-8 col-sm-12">
-            <div class="window">
-                e
-            </div>
+            <div class="window leaderboard">
+            <?php $count = 1; ?>
+            <table class="leaderboard">
+                <tbody>
+                    <?php $count = 1; foreach ($results as $row): ?>
+                        <tr>
+                            <td><?php echo $count++; ?></td>
+                            <td class="text-uppercase"><?php echo htmlspecialchars($row['username']); ?></span></td>
+                            <td><?php echo htmlspecialchars($row['bran_total']); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

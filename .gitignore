@@ -1,7 +1,7 @@
 bran-config.php
 # node
 api/node_modules
-api/api-config.json
+api/config.json
 package-lock.json
 # osticket local
 ost/*
