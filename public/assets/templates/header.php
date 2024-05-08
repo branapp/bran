@@ -4,7 +4,7 @@
  * CHECKS IF BRAN IS INSTALLED
  */
 session_start();
- $base_dir = $_SERVER['DOCUMENT_ROOT'] . "/../";
+$base_dir = __DIR__ . "/../../"; // This climbs up two levels from the current directory.
  include "$base_dir/bran-config.php";
  include $_SERVER['DOCUMENT_ROOT']."/inc/connect.inc.php";
 
@@ -37,6 +37,19 @@ if (!is_null($user_data['theme_accent'])):
 else:
     $theme_accent = "FF90BC";
 endif;
+
+$pluginLoaderPath = "$base_dir/inc/plugins.inc.php";
+if (file_exists($pluginLoaderPath)) {
+    include $pluginLoaderPath;
+} else {
+    error_log("Failed to load plugin loader from: " . $pluginLoaderPath);
+    // Optionally handle the error more gracefully
+}
+
+$pluginLoader = new PluginLoader();
+$pluginLoader->loadPlugins();
+$pluginLoader->executePlugins();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

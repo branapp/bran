@@ -6,3 +6,6 @@ package-lock.json
 # osticket local
 ost/*
 .vscode
+# plugins folder
+plugins/*
+!plugins/index.php
