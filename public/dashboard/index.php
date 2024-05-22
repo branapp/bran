@@ -55,11 +55,11 @@ endif;
                         <div class="modal-header">
                             <h1 class="modal-title fs-5">send bran</h1>
                         </div>
+                        <form action="../inc/credits.inc.php" method="POST" class="login-page">
                         <div class="modal-body login-form">
-                            <form action="../inc/credits.inc.php" method="POST" class="login-page">
                                 <label for="recipient">recipient</label>
                                 <input type="text" name="recipient" id="recipient" class="form-control" required>
-                                <label for="amount" class="mt-2">amount (max <?php echo $bran_daily ?>)</label>
+                                <label for="amount" class="">amount (max <?php echo $bran_daily ?>)</label>
                                 <input type="number" name="amount" id="amount" class="form-control" required max="<?php echo $bran_daily ?>">
                                 <script>
                                     // this isnt stupid, you're stupid
@@ -69,12 +69,12 @@ endif;
                                         }
                                     });
                                 </script>
-                            </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
                             <button type="submit" class="btn btn-primary">confirm</button>
                         </div>
+                    </form>
                     </div>
                 </div>
             </div>
