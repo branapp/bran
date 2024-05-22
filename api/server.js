@@ -1,9 +1,11 @@
 const express = require('express');
 const bran = express();
+const { exec } = require('child_process');
 
 // Require cron jobs
 require('./cron');
 const knex = require('./actions/creds');
+const { error } = require('console');
 
 // ping endpoint
 bran.get('/', (req, res) => {
@@ -52,6 +54,28 @@ bran.get('/bran', async (req, res) => {
         console.error(error);
         res.status(500).send();
     }
+});
+
+bran.post('/update', (req, res) => {
+    const branch = req.query.branch;
+
+    if (!branch) {
+        return res.status(400).send({ "message": "Missing branch parameter" });
+    }
+
+    const command = `git pull origin ${branch}`;
+
+    exec(command, (error, stdout, stderr) => {
+        if (error) {
+            console.error(`exec error: ${error}`);
+            return res.status(500).send({ "message": "Error updating branch" });
+        }
+
+        console.log(`stdout: ${stdout}`);
+        console.error(`stderr: ${stderr}`);
+
+        res.status(200).send({ "message": "Branch updated" });
+    });
 });
 
 

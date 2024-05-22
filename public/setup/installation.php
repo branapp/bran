@@ -75,9 +75,9 @@ $initial_file_dir = dirname($initial_file);
             <label for="adminemail">Email</label><br>
             <input type="email" id="adminemail" name="adminemail">
             <label for="adminuser">Username</label><br>
-            <input type="text" id="adminuser" name="adminuser">
+            <input type="password" id="adminuser" name="adminuser">
             <label for="adminpass">Password</label><br>
-            <input type="text" id="adminpass" name="adminpass">
+            <input type="password" id="adminpass" name="adminpass">
             <label for="adminpassconf">Password confirm</label><br>
             <input type="text" id="adminpassconf" name="adminpassconf">
             <p class="text-white small">Login details for database</p>
@@ -86,7 +86,7 @@ $initial_file_dir = dirname($initial_file);
             <label for="dbuser">Username</label><br>
             <input type="text" id="dbuser" name="dbuser">
             <label for="dbpass">Password</label><br>
-            <input type="text" id="dbpass" name="dbpass">
+            <input type="password" id="dbpass" name="dbpass">
             <p class="text-white small">Submitting this form initialises the setup script, please make sure the information provided is correct before continuing.</p>
             <input type="submit" name="setup-submit" class="b-button" value="Install">
           </form>

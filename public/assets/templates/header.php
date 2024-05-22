@@ -5,6 +5,7 @@
  */
 session_start();
 $base_dir = __DIR__ . "/../../"; // This climbs up two levels from the current directory.
+
  include "$base_dir/bran-config.php";
  include $_SERVER['DOCUMENT_ROOT']."/inc/connect.inc.php";
 
@@ -71,10 +72,25 @@ $pluginLoader->executePlugins();
                 background-repeat: no-repeat;   
                 background-attachment: fixed;
             }
-
-            .window {
-                background-color: #<?php echo $theme_accent ?>10;
+            
+            .form-control:focus {
+                background-color: unset;
+                color: var(--default-accent);
             }
+            .window {
+                background-color: #<?php echo $theme_accent ?>30; }
+            
+            .modal-content {
+                background-color: black;
+                padding: 1rem;}
+            
+            .btn {
+                background-color: #<?php echo $theme_accent ?>;
+                border-color: #<?php echo $theme_accent ?>; }
+            
+            .btn:hover {
+                background-color: #<?php echo $theme_accent ?>;
+                border-color: #<?php echo $theme_accent ?>90; }
         </style>
 </head>
 
@@ -88,7 +104,21 @@ $pluginLoader->executePlugins();
             if (isset($_SESSION['cuid'])):
                 ?>
                 <div class="d-flex">
-                    <a class="nav-link" aria-current="page" href="../inc/logout.inc.php">Sign out</a>
+                    
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" type="button" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            account
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+                            <li><?php if (strpos($_SERVER['REQUEST_URI'], '/admin') !== false): ?>
+                        <a class="dropdown-item" aria-current="page" href="../dashboard">dashboard</a>
+                    <?php else: ?>
+                        <a class="dropdown-item" aria-current ="page" href="../admin">admin</a>
+                    <?php endif; ?></li>
+                            <li><a class="dropdown-item" href="../inc/logout.inc.php">sign off</a></li>
+                        </ul>
+                    </div>
+                </div>
                 </div>
             <?php
             endif;
