@@ -96,6 +96,7 @@ $pluginLoader->executePlugins();
 
 <body>
 <header class="mb-5">
+    
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <h2 class="navbar-brand"><?php echo '\\\\bran\\'. basename($initial_file_dir) ?></h2>
@@ -104,21 +105,35 @@ $pluginLoader->executePlugins();
             if (isset($_SESSION['cuid'])):
                 ?>
                 <div class="d-flex">
-                    
-                    <div class="dropdown">
-                        <button class="dropdown-toggle" type="button" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div>
+                        <button type="button" class="btn-justtext" data-bs-toggle="modal" data-bs-target="#account">
                             account
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="accountDropdown">
-                            <li><?php if (strpos($_SERVER['REQUEST_URI'], '/admin') !== false): ?>
-                        <a class="dropdown-item" aria-current="page" href="../dashboard">dashboard</a>
-                    <?php else: ?>
-                        <a class="dropdown-item" aria-current ="page" href="../admin">admin</a>
-                    <?php endif; ?></li>
-                            <li><a class="dropdown-item" href="../inc/logout.inc.php">sign off</a></li>
-                        </ul>
+                        <div class="modal" id="account" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5">directory</h1>
+                                    </div>
+                                    <div class="modal-body">
+                                        <ul>
+                                            <li>
+                                                <?php if (strpos($_SERVER['REQUEST_URI'], '/admin') !== false): ?>
+                                                    <a aria-current="page" href="../dashboard" class="ui">dashboard</a>
+                                                <?php else:
+                                                    if ($user_data['user_role'] === 'admin'): ?>
+                                                        <a aria-current="page" href="../admin">admin</a>
+                                                <?php endif; ?>
+                                                <?php endif; ?>
+                                            </li>
+                                            <li><a href="../inc/logout.inc.php">sign off</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    </div>
                 </div>
             <?php
             endif;
@@ -126,4 +141,5 @@ $pluginLoader->executePlugins();
             </div>
         </div>
     </nav>
+    
 </header>

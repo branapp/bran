@@ -166,3 +166,15 @@ table.leaderboard {
 .modal-title {
   font-family: "Press Start", system-ui !important;
 }
+
+.btn-justtext {
+  color: var(--default-accent);
+  font-family: "Press Start", system-ui;
+  font-size: 1.5rem;
+  background-color: unset;
+  border: unset;
+}
+.dropdown-menu {
+  background-color: var(--default-accent);
+  border: unset;
+}
