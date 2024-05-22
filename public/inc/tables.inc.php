@@ -39,21 +39,3 @@ $query = "CREATE TABLE IF NOT EXISTS bran_options (
 );";
 
 $pdo->exec($query);
-
-$query = "INSERT INTO bran_options (option_name, option_value) VALUES ('motd', 'welcome to bran'),
-('user_registration', 'enabled');";
-
-$pdo->exec($query);
-
-// Insert the user data into the users table
-$query = "INSERT INTO users (email, username, password, role)
-          VALUES (:email, :username, :password, :role);";
-$stmt = $pdo->prepare($query);
-
-// Hash the password before binding it
-$password = password_hash($post_vars['adminpass'], PASSWORD_DEFAULT);
-
-$stmt->bindParam(':email', $post_vars['adminemail'], PDO::PARAM_STR);
-$stmt->bindParam(':password', $password, PDO::PARAM_STR); // Now the hashed password is bound
-$stmt->bindParam(':role', $role, PDO::PARAM_STR); // Assuming $role is set to 'admin' beforehand
-$stmt->bindParam(':username', $post_vars['adminuser'], PDO::PARAM_STR);
