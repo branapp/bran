@@ -57,18 +57,20 @@ endif;
                         </div>
                         <form action="../inc/credits.inc.php" method="POST" class="login-page">
                         <div class="modal-body login-form">
-                                <label for="recipient">recipient</label>
-                                <input type="text" name="recipient" id="recipient" class="form-control" required>
-                                <label for="amount" class="">amount (max <?php echo $bran_daily ?>)</label>
-                                <input type="number" name="amount" id="amount" class="form-control" required max="<?php echo $bran_daily ?>">
-                                <script>
-                                    // this isnt stupid, you're stupid
-                                    document.getElementById('amount').addEventListener('input', function() {
-                                        if (this.value > <?php echo $bran_daily ?>) {
-                                            this.value = <?php echo $bran_daily ?>;
-                                        }
-                                    });
-                                </script>
+                            <label for="recipient">recipient</label>
+                            <input type="text" name="recipient" id="recipient" class="form-control" required>
+                            <label for="amount" class="">amount (max <?php echo $bran_daily ?>)</label>
+                            <input type="number" name="amount" id="amount" class="form-control" required  max="<?php echo $bran_daily ?>">
+                            <script>
+                                // this isnt stupid, you're stupid
+                                document.getElementById('amount').addEventListener('input', function() {
+                                    if (this.value < 1) {
+                                        this.value = 1;
+                                    } else if (this.value > <?php echo $bran_daily ?>) {
+                                        this.value = <?php echo $bran_daily ?>;
+                                    }
+                                });
+                            </script>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
