@@ -7,3 +7,8 @@
   font-family: "Revx";
   src: url("../fonts/RevxNeue-Regular.ttf");
 }
+
+@font-face {
+  font-family: "Roboto Mono";
+  src: url("../fonts/RobotoMono-VariableFont_wght.ttf");
+}

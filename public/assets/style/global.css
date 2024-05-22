@@ -64,6 +64,10 @@ a:hover {
   color: var(--default-accent);
 }
 
+.form-control {
+  background-color: unset;
+}
+
 .login-page input[type="submit"],
 .login-page button {
   background-color: var(--default-accent);
@@ -138,11 +142,27 @@ table.leaderboard {
 }
 
 .nav-link {
-  font-family: "Press Start", system-ui !important;
+  font-family: "Roboto Mono", system-ui !important;
   font-size: 1.25rem;
 }
 
 .alert-danger {
   border: none;
   background-color: var(--admin-red);
+}
+
+/* modal css bs5 */
+.modal-content {
+  border: 3px solid var(--default-accent);
+  border-radius: 0;
+}
+
+.modal-body,
+.modal-header,
+.modal-footer {
+  border: none !important;
+}
+
+.modal-title {
+  font-family: "Press Start", system-ui !important;
 }

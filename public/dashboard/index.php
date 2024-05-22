@@ -40,7 +40,42 @@ endif;
                 <div class="text-center">
                     <h3 class="ui ui-title" id="greeting"><?php echo $_SESSION['cuid_username'] ?></h3>
                     <h6 class="ui text-lowercase"><?php echo $bran_options['motd'] ?? "something aint right..." ?></h6>
-                    <h3 class="ui ui-subtitle">BALANCE <?php echo $user_data['bran_daily'] ?? 'idk' ?></h3>
+                    <h3 class="ui ui-subtitle"></h3>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#branspend">
+                    BALANCE <?php echo $user_data['bran_daily'] ?? 'idk' ?>
+                    </button>
+                </div>
+            </div>
+            <!-- Button trigger modal -->
+
+            <!-- Modal -->
+            <div class="modal" id="branspend" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">send bran</h1>
+                        </div>
+                        <div class="modal-body login-form">
+                            <form action="../inc/credits.inc.php" method="POST" class="login-page">
+                                <label for="recipient">recipient</label>
+                                <input type="text" name="recipient" id="recipient" class="form-control" required>
+                                <label for="amount" class="mt-2">amount (max <?php echo $bran_daily ?>)</label>
+                                <input type="number" name="amount" id="amount" class="form-control" required max="<?php echo $bran_daily ?>">
+                                <script>
+                                    // this isnt stupid, you're stupid
+                                    document.getElementById('amount').addEventListener('input', function() {
+                                        if (this.value > <?php echo $bran_daily ?>) {
+                                            this.value = <?php echo $bran_daily ?>;
+                                        }
+                                    });
+                                </script>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+                            <button type="submit" class="btn btn-primary">confirm</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
