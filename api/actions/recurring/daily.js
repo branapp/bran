@@ -29,5 +29,4 @@ async function updateBranDaily() {
     }
 };
 
-
 module.exports = { updateBranDaily };

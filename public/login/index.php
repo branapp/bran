@@ -25,7 +25,7 @@ endif;
                 <input type="password" id="password" name="password" placeholder="Enter password"><br>
                 <input type="submit" name="login-submit" class="b-button" value="Login">
                 <p class="text-white small">This app is only to be used by authorized users. Please report
-suspicious activity to security@tism.team</p>
+suspicious activity to security@bran.sh</p>
                 <p class="text-white small">New around here? <a href="../register">Register here.</a></p>
             </form>
         </div>
