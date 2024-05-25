@@ -96,24 +96,26 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <a class="nav-link active" data-bs-toggle="tab" href="#log1">API Logs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#log2">empty</a>
+                            <a class="nav-link" data-bs-toggle="tab" href="#log2"></a>
                         </li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="log1">
-                        <?php
-                        $logFile = "$base_dir../logs/combined.log";
-                        $logContent = file_get_contents($logFile);
-                        $logLines = explode("\n", $logContent);
-                        $logLines = array_reverse($logLines);
-                        echo '<pre>' . htmlspecialchars(implode("\n", $logLines)) . '</pre>';
-                        ?>
-                        </div>
-                        </div>
+                            <?php
+                            /**
+                             * @todo have this live reload
+                             */
+                            $logFile = "$base_dir../logs/combined.log";
+                            $logContent = file_get_contents($logFile);
+                            $logLines = explode("\n", $logContent);
+                            $logLines = array_reverse($logLines);
+                            echo '<pre>' . htmlspecialchars(implode("\n", $logLines)) . '</pre>';
+                            ?>
                         </div>
                         <div class="tab-pane" id="log2">
                             <p>Log 2 content</p>
                         </div>
+                    </div>
                     </div>
                 </div>
                 </div>
