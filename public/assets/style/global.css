@@ -50,13 +50,13 @@ a:hover {
   margin-top: 50px;
 }
 
-.login-page .login-form > * {
+.login-form > * {
   margin-bottom: 0.5rem;
   width: 100%;
 }
 
 /* Form elements styling */
-.login-page input {
+input {
   border: 2px solid var(--default-accent);
   border-radius: var(--base-radius);
   background-color: unset;
@@ -68,7 +68,7 @@ a:hover {
   background-color: unset;
 }
 
-.login-page input[type="submit"] {
+input[type="submit"] {
   background-color: var(--default-accent);
   color: black;
   border: none;

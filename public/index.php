@@ -18,13 +18,12 @@ if ($installed === false):
     header("Location: setup/installation.php");
     exit;
 else:
-    // !isset will enable this page
     if(isset($_SESSION['cuid'])):
         header("Location: login");
         exit;
     endif;
 endif;
-
+header("Location: login");
 include "assets/templates/header.php";
 ?>
 <div class="d-flex align-items-center justify-content-center">

@@ -30,9 +30,14 @@ include $_SERVER['DOCUMENT_ROOT'] . "/inc/connect.inc.php";
         <div class="window">
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="general">
-                    <p class="modal-title fs-5">General Settings</p>
-                    <!-- Add your general settings content here -->
-                    <form action="../inc/settings.inc.php"></form>
+                    <p class="modal-title fs-5">General</p>
+                        <form action="../inc/settings.inc.php" class="login-form mt-3 w-50" method="POST">
+                            <label for="ch-username">Change username</label>
+                            <input type="text" name="ch-username">
+                            <label for="color-theme">Color theme</label>
+                            <input type="color" name="color-theme">
+                            <input type="submit" value="Save changes" name="settings-submit">
+                        </form>
                 </div>
                 <div class="tab-pane fade" id="account">
                     <p class="modal-title fs-5">Account Settings</p>
