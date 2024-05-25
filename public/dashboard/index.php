@@ -17,7 +17,7 @@ if (isset($_SESSION['cuid'])):
     extract($user_data);
     
     // leaderboard data
-    $sql = "SELECT users.username, users.role, user_data.bran_total FROM user_data JOIN users ON user_data.user_id = users.id ORDER BY user_data.bran_total DESC";
+    $sql = "SELECT users.username, users.role, user_data.bran_total FROM user_data JOIN users ON user_data.user_id = users.id ORDER BY user_data.bran_total DESC LIMIT 10";
     $stmt = $pdo->prepare($sql);
 
     // Execute the query
