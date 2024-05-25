@@ -30,6 +30,13 @@ endif;
             <div class="tab-content">
                 <div class="tab-pane active" id="general">
                     <p class="modal-title fs-5">general</p>
+                    <form action="../inc/settings.inc.php" class="login-form mt-3" method="POST"> 
+                        <label for="ch-username">Change username</label> 
+                        <input type="text" name="ch-username"> 
+                        <label for="color-theme">Color theme</label> 
+                        <input type="color" name="color-theme"> 
+                        <input type="submit" value="Save changes" name="settings-submit">
+                    </form>
                 </div>
                 <div class="tab-pane" id="account">
                     <p class="modal-title fs-5">account</p>

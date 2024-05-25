@@ -38,7 +38,7 @@ endif;
                     <img src="../assets/img/bran.png" alt="bran" class="logo">
                 </div>
                 <div class="text-center">
-                    <h3 class="ui ui-title" id="greeting"><?php echo $_SESSION['cuid_username'] ?></h3>
+                <h3 class="ui ui-title" id="greeting"><?php echo $_SESSION['cuid_username'] ?></h3>
                     <h6 class="ui text-lowercase"><?php echo $bran_options['motd'] ?? "something aint right..." ?></h6>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#branspend">
                         BALANCE <?php echo $user_data['bran_daily'] ?? 'idk' ?>

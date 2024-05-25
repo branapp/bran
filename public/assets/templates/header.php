@@ -96,6 +96,10 @@ $pluginLoader->executePlugins();
             .btn:hover {
                 background-color: #<?php echo $theme_accent ?>;
                 border-color: #<?php echo $theme_accent ?>90; }
+            
+            .nav-link.active {
+                border: none;
+                background-color: #<?php echo $theme_accent ?>90 !important; }
         </style>
 </head>
 

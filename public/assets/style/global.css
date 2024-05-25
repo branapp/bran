@@ -148,6 +148,13 @@ table.leaderboard {
   font-size: 1.25rem;
 }
 
+.nav-tabs .nav-link {
+  border: unset;
+  margin: unset;
+  padding: unset;
+  border-radius: unset;
+}
+
 .alert-danger {
   border: none;
   background-color: var(--admin-red);
