@@ -24,6 +24,11 @@ if (isset($_SESSION['cuid'])):
     $stmt->bindParam(':user_id', $_SESSION['cuid'], PDO::PARAM_INT);
     $stmt->execute();
     $user_data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $stmt = $pdo->prepare("SELECT role FROM users WHERE id = :user_id");
+    $stmt->bindParam(':user_id', $_SESSION['cuid'], PDO::PARAM_INT);
+    $stmt->execute();
+    $user_role = $stmt->fetchColumn();
 endif;
 
 // make bran_options globally available
@@ -57,6 +62,7 @@ $pluginLoader->executePlugins();
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
         <link rel="stylesheet" href="../assets/style/global.css">
         <link rel="stylesheet" href="../assets/style/fonts.css">
@@ -91,6 +97,10 @@ $pluginLoader->executePlugins();
             .btn:hover {
                 background-color: #<?php echo $theme_accent ?>;
                 border-color: #<?php echo $theme_accent ?>90; }
+            
+            .nav-link.active {
+                border: none;
+                background-color: #<?php echo $theme_accent ?>90 !important; }
         </style>
 </head>
 
@@ -117,17 +127,26 @@ $pluginLoader->executePlugins();
                                     </div>
                                     <div class="modal-body">
                                         <ul>
-                                            <li>
-                                                <?php if (strpos($_SERVER['REQUEST_URI'], '/admin') !== false): ?>
+                                            <?php if (strpos($_SERVER['REQUEST_URI'], '/admin') !== false): ?>
+                                                <li>
                                                     <a aria-current="page" href="../dashboard" class="ui">dashboard</a>
-                                                <?php else:
-                                                    if ($user_data['user_role'] === 'admin'): ?>
+                                                </li>
+                                                <?php if ($user_data['user_role'] === 'admin'): ?>
+                                                    <li>
                                                         <a aria-current="page" href="../admin">admin</a>
+                                                    </li>
                                                 <?php endif; ?>
+                                            <?php else: ?>
+                                                <li>
+                                                    <a aria-current="page" href="../admin">admin</a>
+                                                </li>
                                                 <?php endif; ?>
-                                            </li>
+                                                <li><a href="../settings">settings</a></li>
                                             <li><a href="../inc/logout.inc.php">sign off</a></li>
                                         </ul>
+                                    </div>
+                                    </div>
+                                    </div>
                                     </div>
                                 </div>
                             </div>

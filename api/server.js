@@ -1,11 +1,11 @@
 const express = require('express');
 const bran = express();
 const { exec } = require('child_process');
+const { logger } = require('./logger.js');
 
 // Require cron jobs
 require('./cron');
 const knex = require('./actions/creds');
-const { error } = require('console');
 
 // ping endpoint
 bran.get('/', (req, res) => {
@@ -15,6 +15,7 @@ bran.get('/', (req, res) => {
         message: 'pong',
         timestamp: timestamp,
     });
+    logger.info(`Ping endpoint hit at ${timestamp}`);
 });
 
 // user data endpoint
@@ -38,7 +39,7 @@ bran.get('/user/:username', async (req, res) => {
         }
         res.status(200).send({ "response": user });
     } catch (error) {
-        console.error(error);
+        logger.error(error);
         res.status(500).send();
     }
 });
@@ -51,7 +52,7 @@ bran.get('/bran', async (req, res) => {
             .select('users.username', 'user_data.bran_total');
         res.status(200).send({ "message": "bran leaderboard endpoint", "response": leaderboard });
     } catch (error) {
-        console.error(error);
+        logger.error(error);
         res.status(500).send();
     }
 });
@@ -67,19 +68,19 @@ bran.post('/update', (req, res) => {
 
     exec(command, (error, stdout, stderr) => {
         if (error) {
-            console.error(`exec error: ${error}`);
+            logger.error(`exec error: ${error}`);
             return res.status(500).send({ "message": "Error updating branch" });
         }
 
-        console.log(`stdout: ${stdout}`);
-        console.error(`stderr: ${stderr}`);
+        logger.info(`stdout: ${stdout}`);
+        logger.error(`stderr: ${stderr}`);
 
         res.status(200).send({ "message": "Branch updated" });
     });
 });
 
 
-let port = 3337;
+let port = 1337;
 bran.listen(port, () => {
-    console.log('bran is listening on port ' + port);
+    logger.info(`bran is listening on port ${port}`);
 });

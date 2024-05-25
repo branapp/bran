@@ -11,3 +11,4 @@ plugins/*
 !plugins/index.php
 # OSX
 .DS_Store
+*.log

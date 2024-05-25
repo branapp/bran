@@ -1,4 +1,4 @@
-<?php     
+<?php   
 // Set the error mode to PDO::ERRMODE_EXCEPTION
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -9,7 +9,7 @@ $query = "CREATE TABLE IF NOT EXISTS users (
     username VARCHAR(32) NOT NULL,
     password TINYTEXT NOT NULL,
     user_join TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    role TINYTEXT,
+    role ENUM('new_user', 'user', 'admin') NOT NULL DEFAULT 'new_user',
     PRIMARY KEY (id)
 );";
 

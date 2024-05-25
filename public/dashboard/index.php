@@ -17,7 +17,7 @@ if (isset($_SESSION['cuid'])):
     extract($user_data);
     
     // leaderboard data
-    $sql = "SELECT users.username, users.role, user_data.bran_total FROM user_data JOIN users ON user_data.user_id = users.id ORDER BY user_data.bran_total DESC";
+    $sql = "SELECT users.username, users.role, user_data.bran_total FROM user_data JOIN users ON user_data.user_id = users.id ORDER BY user_data.bran_total DESC LIMIT 8";
     $stmt = $pdo->prepare($sql);
 
     // Execute the query
@@ -38,11 +38,10 @@ endif;
                     <img src="../assets/img/bran.png" alt="bran" class="logo">
                 </div>
                 <div class="text-center">
-                    <h3 class="ui ui-title" id="greeting"><?php echo $_SESSION['cuid_username'] ?></h3>
+                <h3 class="ui ui-title" id="greeting"><?php echo $_SESSION['cuid_username'] ?></h3>
                     <h6 class="ui text-lowercase"><?php echo $bran_options['motd'] ?? "something aint right..." ?></h6>
-                    <h3 class="ui ui-subtitle"></h3>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#branspend">
-                    BALANCE <?php echo $user_data['bran_daily'] ?? 'idk' ?>
+                        BALANCE <?php echo $user_data['bran_daily'] ?? 'idk' ?>
                     </button>
                 </div>
             </div>
@@ -57,18 +56,20 @@ endif;
                         </div>
                         <form action="../inc/credits.inc.php" method="POST" class="login-page">
                         <div class="modal-body login-form">
-                                <label for="recipient">recipient</label>
-                                <input type="text" name="recipient" id="recipient" class="form-control" required>
-                                <label for="amount" class="">amount (max <?php echo $bran_daily ?>)</label>
-                                <input type="number" name="amount" id="amount" class="form-control" required max="<?php echo $bran_daily ?>">
-                                <script>
-                                    // this isnt stupid, you're stupid
-                                    document.getElementById('amount').addEventListener('input', function() {
-                                        if (this.value > <?php echo $bran_daily ?>) {
-                                            this.value = <?php echo $bran_daily ?>;
-                                        }
-                                    });
-                                </script>
+                            <label for="recipient">recipient</label>
+                            <input type="text" name="recipient" id="recipient" class="form-control" required>
+                            <label for="amount" class="">amount (max <?php echo $bran_daily ?>)</label>
+                            <input type="number" name="amount" id="amount" class="form-control" required  max="<?php echo $bran_daily ?>">
+                            <script>
+                                // this isnt stupid, you're stupid
+                                document.getElementById('amount').addEventListener('input', function() {
+                                    if (this.value < 1) {
+                                        this.value = 1;
+                                    } else if (this.value > <?php echo $bran_daily ?>) {
+                                        this.value = <?php echo $bran_daily ?>;
+                                    }
+                                });
+                            </script>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>

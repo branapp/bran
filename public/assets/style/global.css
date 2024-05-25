@@ -50,13 +50,13 @@ a:hover {
   margin-top: 50px;
 }
 
-.login-page .login-form > * {
+.login-form > * {
   margin-bottom: 0.5rem;
   width: 100%;
 }
 
 /* Form elements styling */
-.login-page input {
+input {
   border: 2px solid var(--default-accent);
   border-radius: var(--base-radius);
   background-color: unset;
@@ -68,8 +68,7 @@ a:hover {
   background-color: unset;
 }
 
-.login-page input[type="submit"],
-.login-page button {
+input[type="submit"] {
   background-color: var(--default-accent);
   color: black;
   border: none;
@@ -77,6 +76,10 @@ a:hover {
 
 .logo {
   max-width: 250px; /* Logo size specifically for the login page */
+}
+
+.logo-sm {
+  max-width: 75px;
 }
 
 .text-header {
@@ -98,7 +101,6 @@ a:hover {
 .window {
   border: 3px solid var(--default-accent);
   min-height: 450px;
-  margin: 0 1rem 0 1rem;
   padding: 2rem;
   border-radius: 1rem;
 }
@@ -144,6 +146,13 @@ table.leaderboard {
 .nav-link {
   font-family: "Roboto Mono", system-ui !important;
   font-size: 1.25rem;
+}
+
+.nav-tabs .nav-link {
+  border: unset;
+  margin: unset;
+  padding: unset;
+  border-radius: unset;
 }
 
 .alert-danger {
