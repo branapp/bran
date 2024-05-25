@@ -18,7 +18,8 @@ if ($installed === false):
     header("Location: setup/installation.php");
     exit;
 else:
-    if(!isset($_SESSION['cuid'])):
+    // !isset will enable this page
+    if(isset($_SESSION['cuid'])):
         header("Location: login");
         exit;
     endif;

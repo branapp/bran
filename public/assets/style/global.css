@@ -101,7 +101,6 @@ a:hover {
 .window {
   border: 3px solid var(--default-accent);
   min-height: 450px;
-  margin: 0 1rem 0 1rem;
   padding: 2rem;
   border-radius: 1rem;
 }

@@ -1,7 +1,11 @@
-function updateCountdown() {
-    const now = new Date();
-    const nextMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-    const timeDifference = nextMidnight - now;
+async function getServerTime() {
+    return new Date();
+}
+
+async function updateCountdown() {
+    const serverTime = await getServerTime();
+    const nextMidnight = new Date(serverTime.getFullYear(), serverTime.getMonth(), serverTime.getDate() + 1);
+    const timeDifference = nextMidnight - serverTime;
 
     const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
