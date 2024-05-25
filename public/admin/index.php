@@ -10,7 +10,7 @@ if (isset($_SESSION['cuid'])) :
 endif;
 
 include $base_dir . 'inc/connect.inc.php';
-$query = "SELECT u.*, ud.bran_daily, ud.bran_total FROM users u JOIN user_data ud ON u.id = ud.user_id ORDER BY bran_total DESC LIMIT 8";
+$query = "SELECT u.*, ud.bran_daily, ud.bran_total FROM users u JOIN user_data ud ON u.id = ud.user_id ORDER BY bran_total DESC LIMIT 10";
 $stmt = $pdo->query($query);
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -43,6 +43,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="tab-content">
                 <div class="tab-pane active" id="dash">
                     <h3 class="navbar-brand" id="greeting"><?php echo $_SESSION['cuid_username'] ?></h3>
+                    
                 </div>
                 <div class="tab-pane" id="settings">
                     <p class="modal-title fs-5">general</p>
@@ -51,9 +52,26 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <p class="modal-title fs-5">moderation</p>
                     <div> 
                     <table class="table table-dark table-bordered">
+                        <input type="text" id="searchInput" class="" placeholder="find a user">
+                        <script>
+                        $(document).ready(function() {
+                            $('#searchInput').on('input', function() {
+                                var searchText = $(this).val().toLowerCase();
+                                $('tbody tr').each(function() {
+                                    var username = $(this).find('td:first').text().toLowerCase();
+                                    if (username.includes(searchText)) {
+                                        $(this).show();
+                                    } else {
+                                        $(this).hide();
+                                    }
+                                });
+                            });
+                        });
+                        </script>
                         <thead>
                             <tr>
-                            <th>username</th>
+                            <th>user</th>
+                            <th>join date</th>
                             <th>role</th>
                             <th>bran total</th>
                             </tr>
@@ -62,6 +80,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <?php foreach ($results as $result): ?>
                             <tr>
                                 <td><?php echo $result['username'] ?></td>
+                                <td><?php echo $result['user_join'] ?></td>
                                 <td><?php echo $result['role'] ?></td>
                                 <td><?php echo $result['bran_total'] ?></td>
                             </tr>
@@ -77,4 +96,6 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 </div>
+<?php include("../inc/gitinfo.inc.php") ?>
+<p class="mt-3"><?php echo $git_commit_id ?> on <?php echo $git_branch ?> branch.</p>
 </body>
