@@ -20,6 +20,13 @@ if(isset($_POST['recipient']) && isset($_POST['amount'])) {
     // Step 3: Check if the sender has enough daily credits
     session_start(); // Start the session
     $senderId = $_SESSION['cuid']; // Assuming user is logged in
+
+    // Check if recipient is the same as the sender
+    if($recipient == $senderId) {
+        header("Location: ../dashboard/?error=cannotSendToYourself");
+        exit(); // Handle this better
+    }
+
     $senderQuery = "SELECT bran_total, bran_daily FROM user_data WHERE user_id = :senderId";
     $senderStatement = $pdo->prepare($senderQuery);
     $senderStatement->execute(['senderId' => $senderId]);
@@ -34,6 +41,14 @@ if(isset($_POST['recipient']) && isset($_POST['amount'])) {
 
     // Step 4: Update bran_daily for sender and bran_total for recipient
     $recipientId = $recipientStatement->fetch(PDO::FETCH_ASSOC)['id'];
+
+    // Check if senderId is the same as recipientId
+    if($senderId == $recipientId) {
+        header("Location: ../dashboard/?error=stop");
+        // probably change this to something more descriptive eventually
+        exit(); // Handle this better
+    }
+
     $updateRecipientQuery = "UPDATE user_data SET bran_total = bran_total + :amount WHERE user_id = :recipientId";
     $updateRecipientStatement = $pdo->prepare($updateRecipientQuery);
     $updateRecipientStatement->execute(['amount' => $amount, 'recipientId' => $recipientId]);

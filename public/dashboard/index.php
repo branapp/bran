@@ -29,7 +29,6 @@ endif;
 
 ?>
 <script src="../<?php $base_dir ?>assets/js/greetings.js"></script>
-<script src="../<?php $base_dir ?>assets/js/countdown.js"></script>
 <div class="dashboard">
     <div class="row">
         <div class="col-md-4 col-sm-12">
@@ -44,7 +43,6 @@ endif;
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#branspend">
                         BALANCE <?php echo $user_data['bran_daily'] ?? 'idk' ?>
                     </button>
-                    <p class="ui" id="countdown"></p>
                 </div>
             </div>
             <!-- Button trigger modal -->
