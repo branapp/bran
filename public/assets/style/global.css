@@ -68,8 +68,7 @@ a:hover {
   background-color: unset;
 }
 
-.login-page input[type="submit"],
-.login-page button {
+.login-page input[type="submit"] {
   background-color: var(--default-accent);
   color: black;
   border: none;
@@ -77,6 +76,10 @@ a:hover {
 
 .logo {
   max-width: 250px; /* Logo size specifically for the login page */
+}
+
+.logo-sm {
+  max-width: 75px;
 }
 
 .text-header {

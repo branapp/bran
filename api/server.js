@@ -79,7 +79,7 @@ bran.post('/update', (req, res) => {
 });
 
 
-let port = 3337;
+let port = 1337;
 bran.listen(port, () => {
     console.log('bran is listening on port ' + port);
 });

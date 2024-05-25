@@ -17,7 +17,7 @@ if (isset($_SESSION['cuid'])):
     extract($user_data);
     
     // leaderboard data
-    $sql = "SELECT users.username, users.role, user_data.bran_total FROM user_data JOIN users ON user_data.user_id = users.id ORDER BY user_data.bran_total DESC LIMIT 10";
+    $sql = "SELECT users.username, users.role, user_data.bran_total FROM user_data JOIN users ON user_data.user_id = users.id ORDER BY user_data.bran_total DESC LIMIT 8";
     $stmt = $pdo->prepare($sql);
 
     // Execute the query
@@ -29,6 +29,7 @@ endif;
 
 ?>
 <script src="../<?php $base_dir ?>assets/js/greetings.js"></script>
+<script src="../<?php $base_dir ?>assets/js/countdown.js"></script>
 <div class="dashboard">
     <div class="row">
         <div class="col-md-4 col-sm-12">

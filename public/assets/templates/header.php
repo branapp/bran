@@ -135,7 +135,8 @@ $pluginLoader->executePlugins();
                                                 <li>
                                                     <a aria-current="page" href="../admin">admin</a>
                                                 </li>
-                                            <?php endif; ?>
+                                                <?php endif; ?>
+                                                <li><a href="../settings">settings</a></li>
                                             <li><a href="../inc/logout.inc.php">sign off</a></li>
                                         </ul>
                                     </div>
