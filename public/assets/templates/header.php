@@ -24,6 +24,11 @@ if (isset($_SESSION['cuid'])):
     $stmt->bindParam(':user_id', $_SESSION['cuid'], PDO::PARAM_INT);
     $stmt->execute();
     $user_data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $stmt = $pdo->prepare("SELECT role FROM users WHERE id = :user_id");
+    $stmt->bindParam(':user_id', $_SESSION['cuid'], PDO::PARAM_INT);
+    $stmt->execute();
+    $user_role = $stmt->fetchColumn();
 endif;
 
 // make bran_options globally available
@@ -117,17 +122,25 @@ $pluginLoader->executePlugins();
                                     </div>
                                     <div class="modal-body">
                                         <ul>
-                                            <li>
-                                                <?php if (strpos($_SERVER['REQUEST_URI'], '/admin') !== false): ?>
+                                            <?php if (strpos($_SERVER['REQUEST_URI'], '/admin') !== false): ?>
+                                                <li>
                                                     <a aria-current="page" href="../dashboard" class="ui">dashboard</a>
-                                                <?php else:
-                                                    if ($user_data['user_role'] === 'admin'): ?>
+                                                </li>
+                                                <?php if ($user_data['user_role'] === 'admin'): ?>
+                                                    <li>
                                                         <a aria-current="page" href="../admin">admin</a>
+                                                    </li>
                                                 <?php endif; ?>
-                                                <?php endif; ?>
-                                            </li>
+                                            <?php else: ?>
+                                                <li>
+                                                    <a aria-current="page" href="../admin">admin</a>
+                                                </li>
+                                            <?php endif; ?>
                                             <li><a href="../inc/logout.inc.php">sign off</a></li>
                                         </ul>
+                                    </div>
+                                    </div>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
