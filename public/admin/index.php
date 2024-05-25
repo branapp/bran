@@ -8,6 +8,11 @@ if (isset($_SESSION['cuid'])) :
         header("Location: ../dashboard");
     endif;
 endif;
+
+include $base_dir . 'inc/connect.inc.php';
+$query = "SELECT u.*, ud.bran_daily, ud.bran_total FROM users u JOIN user_data ud ON u.id = ud.user_id ORDER BY bran_total DESC LIMIT 8";
+$stmt = $pdo->query($query);
+$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <body>
 <script src="../assets/js/greetings.js"></script>
@@ -44,6 +49,26 @@ endif;
                 </div>
                 <div class="tab-pane" id="moderation">
                     <p class="modal-title fs-5">moderation</p>
+                    <div> 
+                    <table class="table table-dark table-bordered">
+                        <thead>
+                            <tr>
+                            <th>username</th>
+                            <th>role</th>
+                            <th>bran total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($results as $result): ?>
+                            <tr>
+                                <td><?php echo $result['username'] ?></td>
+                                <td><?php echo $result['role'] ?></td>
+                                <td><?php echo $result['bran_total'] ?></td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                    </div>
                 </div>
                 <div class="tab-pane" id="logging">
                     <p class="modal-title fs-5">logging</p>
