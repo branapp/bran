@@ -96,6 +96,7 @@ endif;
                     <?php endforeach; ?>
                 </tbody>
             </table>
+            <h3 class="ui ui-title" id="countdown"></h3>
         </div>
     </div>
 </div>
