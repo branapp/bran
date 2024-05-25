@@ -14,20 +14,32 @@ include $_SERVER['DOCUMENT_ROOT'] . "/inc/connect.inc.php";
     <div class="col-md-2">
         <div class="window">
             <div class="d-flex justify-content-center align-items-center">
-                        <img src="../assets/img/bran.png" alt="bran" class="logo-sm">
-                    </div>
-                    <ul>
-                        <li><a href="#general"></a>General</li>
-                        <li><a href="#general"></a>Account</li>
-                    </ul>
-                </div>
+                <img src="../assets/img/bran.png" alt="bran" class="logo-sm">
             </div>
-            <div class="col-md-10">
-                <div class="window">
-                <p class="modal-title fs-5">settings</p>
+            <ul class="nav nav-tabs flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#general">General</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#account">Account</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-10">
+        <div class="window">
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="general">
+                    <p class="modal-title fs-5">General Settings</p>
+                    <!-- Add your general settings content here -->
+                    <form action="../inc/settings.inc.php"></form>
+                </div>
+                <div class="tab-pane fade" id="account">
+                    <p class="modal-title fs-5">Account Settings</p>
+                    <!-- Add your account settings content here -->
+                </div>
             </div>
         </div>
     </div>
-<div class="d-flex flex-column align-items-center justify-content-center vh80">
 </div>
 </body>
