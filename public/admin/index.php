@@ -18,7 +18,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <script src="../assets/js/greetings.js"></script>
 <div class="row">
     <div class="col-md-2">
-        <div class="window text-center">
+        <div class="window">
             <div class="d-flex justify-content-center align-items-center">
                 <img src="../assets/img/bran.png" alt="bran" class="logo-sm">
             </div>
@@ -47,6 +47,8 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
                 <div class="tab-pane" id="settings">
                     <p class="modal-title fs-5">general</p>
+                    <?php include("../inc/gitinfo.inc.php") ?>
+                    <p class="mt-1"><?php echo $git_commit_id ?> on <?php echo $git_branch ?> branch.</p>
                 </div>
                 <div class="tab-pane" id="moderation">
                     <p class="modal-title fs-5">moderation</p>
@@ -123,6 +125,5 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 </div>
-<?php include("../inc/gitinfo.inc.php") ?>
-<p class="mt-3"><?php echo $git_commit_id ?> on <?php echo $git_branch ?> branch.</p>
+
 </body>

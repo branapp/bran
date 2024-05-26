@@ -21,6 +21,7 @@ body {
   color: var(--default-accent);
   /* ultrawide enjoyers */
   max-width: 2160px;
+  background-color: var(--default-accent);
 }
 
 h1,
@@ -103,6 +104,8 @@ input[type="submit"] {
   min-height: 450px;
   padding: 2rem;
   border-radius: 1rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
 }
 
 .leaderboard {
@@ -155,6 +158,10 @@ table.leaderboard {
   border-radius: unset;
 }
 
+.nav-tabs {
+  border: none;
+}
+
 .alert-danger {
   border: none;
   background-color: var(--admin-red);
@@ -186,4 +193,29 @@ table.leaderboard {
 .dropdown-menu {
   background-color: var(--default-accent);
   border: unset;
+}
+
+/* Media Queries for Mobile Devices */
+@media only screen and (max-width: 600px) {
+  /* Adjust styles for smaller screens here */
+  body {
+    padding: 1rem; /* Example: Reduce padding for smaller screens */
+  }
+  .window {
+  padding: 1rem;
+  min-height: 300px; /* Example: Reduce minimum height for smaller screens */'
+  }
+  .login-page .login-form {
+    width: 90%; /* Example: Adjust width of login form for smaller screens */
+  }
+
+  .navbar-brand,
+  .btn-justtext,
+  .leaderboard {
+    font-size: 90%;
+  }
+
+  .logo {
+    max-width: 40%;
+  }
 }
